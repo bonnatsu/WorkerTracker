@@ -4,6 +4,10 @@ import WorkSelector from './WorkSelector';
 import ActionButtons from './ActionButtons';
 import RecordList from './RecordList';
 import { supabase } from '../lib/supabase';
+import { useEffect } from "react";
+
+
+
 
 function WorkTracker() {
   const [employeeId, setEmployeeId] = useState("");
@@ -13,16 +17,9 @@ function WorkTracker() {
   const [subCategory, setSubCategory] = useState("");
 
   const [records, setRecords] = useState([]);
+  const [users,setUsers] = useState([]);
+  const [worklist,setWorklist] = useState({});
 
-  const users = [
-    { id: "001", name: "田中" },
-    { id: "002", name: "佐藤" }
-  ];
-
-  const worklist = {
-    開発: ["React", "API"],
-    会議: ["MTG", "商談"]
-  };
 
   const handleCheckUser = () => {
     const user = users.find(u => u.id === employeeId);
@@ -34,6 +31,46 @@ function WorkTracker() {
 
     setEmployeeName(user.name);
   };
+
+  useEffect (() => {
+    const fetchUsers = async () => {
+      const { data, error } = await supabase
+        .from('users')
+        .select("*");
+
+      if(error) {
+        console.error(error);
+      } else {
+        setUsers(data);
+      }
+    };
+    fetchUsers();
+  }, []);
+
+  useEffect (() => {
+    const fetchWorklist = async () => {
+      const { data, error } = await supabase
+        .from("worklist")
+        .select("*");
+
+      if (error) {
+        console.error(error);
+        return;
+      }
+
+      const grouped = {};
+
+      data.forEach(item => {
+        if (!grouped[item.category]) {
+          grouped[item.category] = [];
+        }
+        grouped[item.cateory].push(item.subCategory);
+      });
+      setWorklist(grouped);
+    };
+
+    fetchWorklist();
+  }, []);
 
 
   //既存作業の完了
