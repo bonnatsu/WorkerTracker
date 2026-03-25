@@ -3,6 +3,7 @@ import UserInput from './UserInput';
 import WorkSelector from './WorkSelector';
 import ActionButtons from './ActionButtons';
 import RecordList from './RecordList';
+import { supabase } from '../lib/supabase';
 
 function WorkTracker() {
   const [employeeId, setEmployeeId] = useState("");
@@ -34,40 +35,52 @@ function WorkTracker() {
     setEmployeeName(user.name);
   };
 
-  const handleStart = () => {
+
+  //既存作業の完了
+  const handleStart = async () => {
     const now = new Date();
 
-    let updated = records.map(r => {
-      if (r.employeeId === employeeId && !r.endTime) {
-        return { ...r, endTime: now };
-      }
-      return r;
-    });
+    await supabase
+      .from('worktracker')
+      .update({ end_time: now})
+      .eq('employee_id', employeeId)
+      .is('end_time',null)
 
-    const newRecord = {
-      id: Date.now(),
-      employeeId,
-      employeeName,
+  //新規作業開始
+  const { error } = await supabase
+    .from('workTracker')
+    .insert([
+      {
+      employee_id: employeeId,
+      employee_name: employeeName,
       category,
       subCategory,
-      startTime: now,
-      endTime: null
-    };
+      start_time: now
+        }
+    ]);
 
-    setRecords([...updated, newRecord]);
+    if (error) {
+      console.error(error);
+      alert("登録失敗");
+    } else {
+      alert("作業開始");
+    }
   };
 
-  const handleEnd = () => {
+  const handleEnd = async () => {
     const now = new Date();
 
-    const updated = records.map(r => {
-      if (r.employeeId === employeeId && !r.endTime) {
-        return { ...r, endTime: now };
-      }
-      return r;
-    });
-
-    setRecords(updated);
+    const { error } = await supabase
+      .from('worktracker')
+      .update({ end_time:now })
+      .eq('employee_id',employeeId)
+      .is('end_time',null);
+    if (error) {
+      console.error(error);
+      alert("終了失敗");
+    } else {
+      alert("作業終了")
+    }
   };
 
   const handleAllEnd = () => {
