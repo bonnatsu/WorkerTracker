@@ -142,18 +142,11 @@ function WorkTracker() {
   const handleAllEnd = async () => {
     const now = new Date();
 
-    const updated = records.map(r => {
-      if (!r.end_time) {
-        return { ...r, end_time: now };
-      }
-      
-      return r;
-      
-    });
-    
+    const { error } = await supabase
+      .from('worktracker')
+      .update ({ end_time:now})
+      .is('end_time',null)
     await fetchRecords();
-
-    SetRecords(updated);
   };
 
   return (
