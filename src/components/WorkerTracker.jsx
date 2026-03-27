@@ -139,15 +139,19 @@ function WorkTracker() {
     await fetchRecords();
   };
 
-  const handleAllEnd = () => {
+  const handleAllEnd = async () => {
     const now = new Date();
 
     const updated = records.map(r => {
       if (!r.end_time) {
         return { ...r, end_time: now };
       }
+      
       return r;
+      
     });
+    
+    await fetchRecords();
 
     SetRecords(updated);
   };
