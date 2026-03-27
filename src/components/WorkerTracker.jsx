@@ -22,7 +22,7 @@ function WorkTracker() {
 
 
   const handleCheckUser = () => {
-    const user = users.find(u => u.id === employeeId);
+    const user = users.find(u => u.id === Number(employeeId));
 
     if (!user) {
       alert("存在しない社員ID");
