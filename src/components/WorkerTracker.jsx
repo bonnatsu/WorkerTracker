@@ -10,7 +10,7 @@ import { useEffect } from "react";
 
 
 function WorkTracker() {
-  const [employeeId, setEmployeeId] = useState("");
+  const [employeeId, setEmployeeId] = useState(null);
   const [employeeName, setEmployeeName] = useState("");
 
   const [category, setCategory] = useState("");
