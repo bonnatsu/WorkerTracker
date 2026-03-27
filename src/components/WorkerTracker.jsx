@@ -143,8 +143,8 @@ function WorkTracker() {
     const now = new Date();
 
     const updated = records.map(r => {
-      if (!r.endTime) {
-        return { ...r, endTime: now };
+      if (!r.end_time) {
+        return { ...r, end_time: now };
       }
       return r;
     });
