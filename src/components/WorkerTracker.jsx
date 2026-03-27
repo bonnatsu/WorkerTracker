@@ -50,6 +50,23 @@ function WorkTracker() {
   }, []);
 
   useEffect (() => {
+    const fetchRecords = async () => {
+      const { data,error} = await supabase
+        .from('worktracker')
+        .select("*")
+        .order('start_time', {ascending: false});
+
+      if (error) {
+        console.error(error);
+      } else {
+        SetRecords(data);
+      }
+    };
+
+    fetchRecords();
+  },[]);
+
+  useEffect (() => {
     const fetchWorklist = async () => {
       const { data, error } = await supabase
         .from("worklist")
@@ -82,7 +99,7 @@ function WorkTracker() {
     await supabase
       .from('worktracker')
       .update({ end_time: now})
-      .eq('employee_id', employeeId)
+      .eq('employee_id', Number(employeeId))
       .is('end_time',null)
 
   //新規作業開始
@@ -104,6 +121,7 @@ function WorkTracker() {
     } else {
       alert("作業開始");
     }
+    await fetchRecords();
   };
 
   const handleEnd = async () => {
@@ -120,6 +138,7 @@ function WorkTracker() {
     } else {
       alert("作業終了")
     }
+    await fetchRecords();
   };
 
   const handleAllEnd = () => {
