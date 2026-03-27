@@ -49,7 +49,7 @@ function WorkTracker() {
     fetchUsers();
   }, []);
 
-  useEffect (() => {
+
     const fetchRecords = async () => {
       const { data,error} = await supabase
         .from('worktracker')
@@ -63,8 +63,6 @@ function WorkTracker() {
       }
     };
 
-    fetchRecords();
-  },[]);
 
   useEffect (() => {
     const fetchWorklist = async () => {
