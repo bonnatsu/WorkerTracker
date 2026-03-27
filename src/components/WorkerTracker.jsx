@@ -85,7 +85,7 @@ function WorkTracker() {
 
   //新規作業開始
   const { error } = await supabase
-    .from('workTracker')
+    .from('worktracker')
     .insert([
       {
       employee_id: employeeId,
