@@ -64,7 +64,7 @@ function WorkTracker() {
         if (!grouped[item.category]) {
           grouped[item.category] = [];
         }
-        grouped[item.cateory].push(item.subcategory);
+        grouped[item.category].push(item.subcategory);
       });
       setWorklist(grouped);
     };
