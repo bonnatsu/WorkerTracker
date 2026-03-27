@@ -1,4 +1,4 @@
-function WorkSelector({ category, setcategory, subcategory, setSubcategory, worklist }) {
+function WorkSelector({ category, setcategory, subcategory, setsubcategory, worklist }) {
   return (
     <div>
       <select onChange={(e) => setcategory(e.target.value)} value={category}>
@@ -8,7 +8,7 @@ function WorkSelector({ category, setcategory, subcategory, setSubcategory, work
         ))}
       </select>
 
-      <select onChange={(e) => setSubcategory(e.target.value)} value={subcategory}>
+      <select onChange={(e) => setsubcategory(e.target.value)} value={subcategory}>
         <option value="">小項目</option>
         {category && worklist[category].map((sub) => (
           <option key={sub} value={sub}>{sub}</option>
