@@ -37,6 +37,8 @@ function WorkTracker() {
       const { data, error } = await supabase
         .from('users')
         .select("*");
+        console.log(users);
+        console.log(employeeId);
 
       if(error) {
         console.error(error);
