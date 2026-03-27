@@ -1,11 +1,11 @@
-function UserInput({employeeId,setEmployeeId, employeeName,onCheckUser}) {
+function UserInput({employeeId,SetEmployeeId, employeeName,onCheckUser}) {
     return (
         <div>
             <input
                 type="text"
                 placeholder="社員ID"
                 value={employeeId}
-                onChange={(e) => setEmployeeId(e.target.value)}
+                onChange={(e) => SetEmployeeId(e.target.value)}
                 />
                 <button onClick={onCheckUser}>確認</button>
 

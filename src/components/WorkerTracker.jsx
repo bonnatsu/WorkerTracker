@@ -10,15 +10,15 @@ import { useEffect } from "react";
 
 
 function WorkTracker() {
-  const [employeeId, setEmployeeId] = useState(null);
-  const [employeeName, setEmployeeName] = useState("");
+  const [employeeId, SetEmployeeId] = useState(null);
+  const [employeeName, SetEmployeeName] = useState("");
 
-  const [category, setcategory] = useState("");
-  const [subcategory, setsubcategory] = useState("");
+  const [category, Setcategory] = useState("");
+  const [subcategory, Setsubcategory] = useState("");
 
-  const [records, setRecords] = useState([]);
-  const [users,setUsers] = useState([]);
-  const [worklist,setWorklist] = useState({});
+  const [records, SetRecords] = useState([]);
+  const [users,SetUsers] = useState([]);
+  const [worklist,SetWorklist] = useState({});
 
 
   const handleCheckUser = () => {
@@ -29,7 +29,7 @@ function WorkTracker() {
       return;
     }
 
-    setEmployeeName(user.name);
+    SetEmployeeName(user.name);
   };
 
   useEffect (() => {
@@ -43,7 +43,7 @@ function WorkTracker() {
       if(error) {
         console.error(error);
       } else {
-        setUsers(data);
+        SetUsers(data);
       }
     };
     fetchUsers();
@@ -68,7 +68,7 @@ function WorkTracker() {
         }
         grouped[item.category].push(item.subcategory);
       });
-      setWorklist(grouped);
+      SetWorklist(grouped);
     };
 
     fetchWorklist();
@@ -132,7 +132,7 @@ function WorkTracker() {
       return r;
     });
 
-    setRecords(updated);
+    SetRecords(updated);
   };
 
   return (
@@ -141,16 +141,16 @@ function WorkTracker() {
 
       <UserInput
         employeeId={employeeId}
-        setEmployeeId={setEmployeeId}
+        SetEmployeeId={SetEmployeeId}
         employeeName={employeeName}
         onCheckUser={handleCheckUser}
       />
 
       <WorkSelector
         category={category}
-        setcategory={setcategory}
+        Setcategory={Setcategory}
         subcategory={subcategory}
-        setsubcategory={setsubcategory}
+        Setsubcategory={Setsubcategory}
         worklist={worklist}
       />
 
