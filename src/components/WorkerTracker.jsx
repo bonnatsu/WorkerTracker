@@ -13,7 +13,7 @@ function WorkTracker() {
   const [employeeId, setEmployeeId] = useState(null);
   const [employeeName, setEmployeeName] = useState("");
 
-  const [category, setCategory] = useState("");
+  const [category, setcategory] = useState("");
   const [subcategory, setsubcategory] = useState("");
 
   const [records, setRecords] = useState([]);
@@ -148,7 +148,7 @@ function WorkTracker() {
 
       <WorkSelector
         category={category}
-        setCategory={setCategory}
+        setcategory={setcategory}
         subcategory={subcategory}
         setsubcategory={setsubcategory}
         worklist={worklist}
