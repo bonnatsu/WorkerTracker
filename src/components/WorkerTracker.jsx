@@ -14,7 +14,7 @@ function WorkTracker() {
   const [employeeName, setEmployeeName] = useState("");
 
   const [category, setCategory] = useState("");
-  const [subCategory, setSubCategory] = useState("");
+  const [subcategory, setsubcategory] = useState("");
 
   const [records, setRecords] = useState([]);
   const [users,setUsers] = useState([]);
@@ -64,7 +64,7 @@ function WorkTracker() {
         if (!grouped[item.category]) {
           grouped[item.category] = [];
         }
-        grouped[item.cateory].push(item.subCategory);
+        grouped[item.cateory].push(item.subcategory);
       });
       setWorklist(grouped);
     };
@@ -91,7 +91,7 @@ function WorkTracker() {
       employee_id: employeeId,
       employee_name: employeeName,
       category,
-      subCategory,
+      subcategory,
       start_time: now
         }
     ]);
@@ -147,8 +147,8 @@ function WorkTracker() {
       <WorkSelector
         category={category}
         setCategory={setCategory}
-        subCategory={subCategory}
-        setSubCategory={setSubCategory}
+        subcategory={subcategory}
+        setsubcategory={setsubcategory}
         worklist={worklist}
       />
 
