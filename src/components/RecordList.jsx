@@ -5,7 +5,7 @@ function RecordList({ records }) {
       <ul>
         {records.map((r) => (
           <li key={r.id}>
-            {r.employeeName} / {r.category}-{r.subcategory}：
+            {r.employeeName} / {r.category}-{r.Subcategory}：
             {r.startTime.toLocaleTimeString()} 〜{" "}
             {r.endTime ? r.endTime.toLocaleTimeString() : "作業中"}
           </li>
