@@ -51,7 +51,7 @@ function UsersMaster({onBack}) {
             <ul>
                 {users.map((u) => (
                     <li key={u.id}>
-                        {u.name}
+                        {u.id}{u.name}
                         <button onClick={() => handleDelete(u.id)}>削除</button>
                     </li>
                 ))}
