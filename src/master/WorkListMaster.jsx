@@ -8,7 +8,7 @@ function WorkListMaster({ onBack }) {
 
     const [newCategory,setNewCategory] = useState("");
     const [newSubCategory,setNewSubCategory] = useState("");
-    const [selectedCategoryId,setSelectedCategoryId] = useState(null);
+    const [selectedCategoryId,setSelectedCategoryId] = useState("");
 
 
     const fetchData = async () => {
@@ -22,7 +22,12 @@ function WorkListMaster({ onBack }) {
         fetchData();
     },[]);
 
-    const handleAddCategory = async () => {
+    const handleAddCategory = async (categoryId) => {
+        if (!categoryId) {
+            alert("カテゴリを選択してください");
+            return;
+        }
+
         await supabase.from("categories").insert([{category: newCategory}]);
         setNewCategory("");
         fetchData()
@@ -34,7 +39,7 @@ function WorkListMaster({ onBack }) {
             .insert([
                 { 
                     subcategory: newSubCategory,
-                    category_id:categoryId
+                    category_id:number(categoryId)
                 },
             ]);
         setNewSubCategory("");
@@ -57,28 +62,28 @@ function WorkListMaster({ onBack }) {
 
             <hr />
 
-            {categories.map((cat) => (
-                <div key={cat.id}>
-                    <strong>{cat.name}</strong>
+            <h3>サブカテゴリ追加</h3>
 
-                    <ul>
-                        {subCategories
-                            .filter((sub) => sub.category_id === cat.id)
-                            .map((sub) => (
-                                <li key={sub.id}>{sub.subcategory}</li>
-                            ))}
-                    </ul>
-                    
-                    <input
-                        placeholder="サブカテゴリ追加"
-                        value={newSubCategory}
-                        onChange={(e) => setNewSubCategory(e.target.value)}
-                        />
-                        <button onClick={() => handleAddSubCategory(cat.id)}>
-                            追加
-                        </button>
-                </div>
-            ))}
+            <select
+                value={selectedCategoryId}
+                onChange={(e) => setSelectedCategoryId(e.target.value)}
+            >
+                <option value="">カテゴリ選択</option>
+                {categories.map((cat) => (
+                    <option key={cat.id} value={cat.id}>
+                        {cat.category}
+                    </option>
+                ))}
+            </select>
+
+            <input
+                value={newSubCategory}
+                onChange={(e) => setNewSubCategory(e.target.value)}
+                placeholder="サブカテゴリ名"
+            />
+            <button onClick={() => handleAddSubCategory(selectedCategoryId)}>
+                追加
+            </button>
         </div>
     );
 
