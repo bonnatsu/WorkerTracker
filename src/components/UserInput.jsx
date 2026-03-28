@@ -1,11 +1,10 @@
-function UserInput({employeeId,SetEmployeeId, employeeName}) {
+function UserInput({employeeId,employeeName}) {
     return (
         <div>
             <input
                 type="text"
                 placeholder="社員ID"
                 value={employeeId}
-                onChange={(e) => SetEmployeeId(e.target.value)}
                 />
 
                 {employeeName && <p>名前： {employeeName}</p>}

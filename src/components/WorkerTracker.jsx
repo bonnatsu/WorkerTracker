@@ -171,9 +171,7 @@ return (
       <>
         <UserInput
           employeeId={employeeId}
-          SetEmployeeId={SetEmployeeId}
           employeeName={employeeName}
-          onCheckUser={handleCheckUser}
         />
 
         <WorkSelector
