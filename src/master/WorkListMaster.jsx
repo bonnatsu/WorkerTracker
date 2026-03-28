@@ -39,7 +39,7 @@ function WorkListMaster({ onBack }) {
             .insert([
                 { 
                     subcategory: newSubCategory,
-                    category_id:number(categoryId)
+                    category_id:Number(categoryId)
                 },
             ]);
         setNewSubCategory("");
