@@ -39,7 +39,7 @@ function WorkTracker() {
       const { data, error } = await supabase
         .from('users')
         .select("*")
-        .eq("id",Number(employeeId));
+        .eq("id",Number(id));
         console.log(data);
         console.log(id);
 
@@ -70,7 +70,7 @@ function WorkTracker() {
   useEffect (() => {
     if (!employeeId) return;
     fetchRecords();
-    fetchUsers();
+    fetchUsers(employeeId);
   },[employeeId]);
 
 
@@ -172,6 +172,7 @@ return (
         <UserInput
           employeeId={employeeId}
           employeeName={employeeName}
+          SetEmployeeId={SetEmployeeId}
         />
 
         <WorkSelector
