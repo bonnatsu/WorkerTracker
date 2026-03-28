@@ -23,7 +23,7 @@ function WorkListMaster({ onBack }) {
     },[]);
 
     const handleAddCategory = async () => {
-        await supabase.from("categories").insert([{name: newCategory}]);
+        await supabase.from("categories").insert([{category: newCategory}]);
         setNewCategory("");
         fetchData()
     };
