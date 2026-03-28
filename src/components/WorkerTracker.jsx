@@ -64,6 +64,11 @@ function WorkTracker() {
       }
     };
 
+  useEffect (() => {
+    if (!employeeId) return;
+    fetchRecords();
+  },[employeeId]);
+
 
   useEffect (() => {
     const fetchWorklist = async () => {
