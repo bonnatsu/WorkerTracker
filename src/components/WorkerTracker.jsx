@@ -54,7 +54,7 @@ function WorkTracker() {
       const { data,error} = await supabase
         .from('worktracker')
         .select("*")
-        .eq("id",Number(employeeId))
+        .eq("employee_id",Number(employeeId))
         .order('start_time', {ascending: false});
 
       if (error) {
