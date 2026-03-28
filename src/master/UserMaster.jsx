@@ -15,7 +15,7 @@ function UsersMaster() {
             setUsers(data);
         }
     };
-}
+
 
     useEffect(() => {
         fetchUsers();
@@ -58,6 +58,7 @@ function UsersMaster() {
             </ul>
         </div>
     );
+}
 
 
     export default UsersMaster;
