@@ -67,11 +67,6 @@ function WorkTracker() {
       }
     };
 
-  useEffect (() => {
-    if (!employeeId) return;
-    fetchRecords();
-    fetchUsers(employeeId);
-  },[employeeId]);
 
 
   useEffect (() => {
