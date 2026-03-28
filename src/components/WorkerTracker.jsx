@@ -6,6 +6,7 @@ import RecordList from './RecordList';
 import { supabase } from '../lib/supabase';
 import { useEffect } from "react";
 import UsersMaster from "../master/UserMaster";
+import WorkListMaster from "../master/WorkListMaster";
 
 
 
@@ -183,6 +184,7 @@ return (
           onEnd={handleEnd}
           onAllEnd={handleAllEnd}
           onOpenMaster={() => setMode("master")} // ←追加
+          onOpenWorkMaster={() => setMode("worklistmaster")}
         />
 
         <RecordList records={records} />
@@ -191,6 +193,10 @@ return (
 
     {mode === "master" && (
       <UsersMaster onBack={() => setMode("main")} />
+    )}
+
+    {mode === "worklistmaster" && (
+      <WorkListMaster onBack={() => setMode("main")} />
     )}
   </div>
 );
