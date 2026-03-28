@@ -19,7 +19,6 @@ function WorkTracker() {
   const [subcategory, Setsubcategory] = useState("");
 
   const [records, SetRecords] = useState([]);
-  const [users,SetUsers] = useState([]);
   const [worklist,SetWorklist] = useState({});
   const [mode,setMode] = useState("main");
 
@@ -32,6 +31,7 @@ function WorkTracker() {
     }
 
     SetEmployeeName(user.name);
+    fetchRecords();
   };
 
 
