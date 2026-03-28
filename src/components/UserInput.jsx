@@ -1,4 +1,4 @@
-function UserInput({employeeId,SetEmployeeId, employeeName,onCheckUser}) {
+function UserInput({employeeId,SetEmployeeId, employeeName}) {
     return (
         <div>
             <input
@@ -7,7 +7,6 @@ function UserInput({employeeId,SetEmployeeId, employeeName,onCheckUser}) {
                 value={employeeId}
                 onChange={(e) => SetEmployeeId(e.target.value)}
                 />
-                <button onClick={onCheckUser}>確認</button>
 
                 {employeeName && <p>名前： {employeeName}</p>}
         </div>

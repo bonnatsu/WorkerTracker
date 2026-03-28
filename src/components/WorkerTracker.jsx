@@ -39,7 +39,8 @@ function WorkTracker() {
     const fetchUsers = async () => {
       const { data, error } = await supabase
         .from('users')
-        .select("*");
+        .select("*")
+        .eq("id",Number(employeeId));
         console.log(data);
         console.log(employeeId);
 
@@ -47,6 +48,7 @@ function WorkTracker() {
         console.error(error);
       } else {
         SetUsers(data);
+        handleCheckUser();
       }
     };
 
