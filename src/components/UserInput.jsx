@@ -1,4 +1,9 @@
 function UserInput({employeeId,employeeName,SetEmployeeId}) {
+    const handleKeyDown = (e) => {
+        if (e.key === "Enter") {
+            onCheckUser();
+        }
+    }
     return (
         <div>
             <input
@@ -6,6 +11,7 @@ function UserInput({employeeId,employeeName,SetEmployeeId}) {
                 placeholder="社員ID"
                 value={employeeId}
                 onChange={(e) => SetEmployeeId(e.target.value)}
+                onKeyDown={handleKeyDown}
                 />
 
                 {employeeName && <p>名前： {employeeName}</p>}

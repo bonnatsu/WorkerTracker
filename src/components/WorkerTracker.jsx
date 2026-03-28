@@ -173,6 +173,7 @@ return (
           employeeId={employeeId}
           employeeName={employeeName}
           SetEmployeeId={SetEmployeeId}
+          onCheckUser={handleCheckUser}
         />
 
         <WorkSelector
