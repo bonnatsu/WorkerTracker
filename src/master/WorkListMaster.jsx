@@ -13,7 +13,7 @@ function WorkListMaster({ onBack }) {
 
     const fetchData = async () => {
         const {data:catData} = await supabase.from("categories").select("*");
-        const {data,subData} = await supabase.from("subcategories").select("*");
+        const {data:subData} = await supabase.from("subcategories").select("*");
 
         setCategories(catData || []);
         setSubCategories(subData || []);
@@ -30,10 +30,10 @@ function WorkListMaster({ onBack }) {
 
 
     const handleAddSubCategory = async (categoryId) => {
-        await supabase.from("categories")
+        await supabase.from("subcategories")
             .insert([
                 { 
-                    subCategories: newSubCategory,
+                    subcategory: newSubCategory,
                     category_id:categoryId
                 },
             ]);
@@ -52,7 +52,7 @@ function WorkListMaster({ onBack }) {
                 onChange={(e) => setNewCategory(e.target.value)}
                 placeholder="カテゴリ名"
             />
-            <button onClick={{handleAddCategory}}>追加</button>
+            <button onClick={handleAddCategory}>追加</button>
 
 
             <hr />
@@ -65,14 +65,14 @@ function WorkListMaster({ onBack }) {
                         {subCategories
                             .filter((sub) => sub.category_id === cat.id)
                             .map((sub) => (
-                                <li key={sub.id}>{subcategory}</li>
+                                <li key={sub.id}>{sub.subcategory}</li>
                             ))}
                     </ul>
                     
                     <input
                         placeholder="サブカテゴリ追加"
                         value={newSubCategory}
-                        onChange={(e) => handleAddSubCategory(e.target.value)}
+                        onChange={(e) => setNewSubCategory(e.target.value)}
                         />
                         <button onClick={() => handleAddSubCategory(cat.id)}>
                             追加
