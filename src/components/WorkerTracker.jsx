@@ -75,23 +75,27 @@ function WorkTracker() {
 
   useEffect (() => {
     const fetchWorklist = async () => {
-      const { data, error } = await supabase
-        .from("worklist")
+      const { data:catData, error:catError } = await supabase
+        .from("categories")
         .select("*");
 
-      if (error) {
-        console.error(error);
+      const {data:subData, error: subError} = await supabase
+        .from("subcategories")
+        .select("*");
+
+      if (catError || subError) {
+        console.error(catError || subError);
         return;
       }
 
       const grouped = {};
 
-      data.forEach(item => {
-        if (!grouped[item.category]) {
-          grouped[item.category] = [];
-        }
-        grouped[item.category].push(item.subcategory);
+      catData.forEach((cat) => {
+          grouped[cat.category] = subData
+            .filter((sub) => sub.category_id === cat.id)
+            .map((sub) => sub.subcategory);
       });
+
       SetWorklist(grouped);
     };
 
