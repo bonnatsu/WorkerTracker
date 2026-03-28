@@ -48,8 +48,8 @@ function WorkTracker() {
         console.error(error);
       } else {
         SetUsers(data);
-        handleCheckUser();
       }
+      handleCheckUser();
     };
 
 
