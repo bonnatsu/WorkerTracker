@@ -35,12 +35,12 @@ function WorkTracker() {
     SetEmployeeName(user.name);
   };
 
-  useEffect (() => {
+
     const fetchUsers = async () => {
       const { data, error } = await supabase
         .from('users')
         .select("*");
-        console.log(users);
+        console.log(data);
         console.log(employeeId);
 
       if(error) {
@@ -49,8 +49,7 @@ function WorkTracker() {
         SetUsers(data);
       }
     };
-    fetchUsers();
-  }, []);
+
 
 
     const fetchRecords = async () => {
@@ -69,7 +68,7 @@ function WorkTracker() {
 
   useEffect (() => {
     if (!employeeId) return;
-    fetchRecords()
+    fetchRecords();
     fetchUsers();
   },[employeeId]);
 
