@@ -24,32 +24,31 @@ function WorkTracker() {
   const [mode,setMode] = useState("main");
 
 
-  const handleCheckUser = () => {
-    const user = users.find(u => u.id === Number(employeeId));
+  const handleCheckUser = async() => {
+    const user = await fetchUsers(employeeId);
 
     if (!user) {
-      alert("存在しない社員ID");
-      return;
+      alert("存在しない社員IDです")
     }
 
     SetEmployeeName(user.name);
   };
 
 
-    const fetchUsers = async () => {
+    const fetchUsers = async (id) => {
       const { data, error } = await supabase
         .from('users')
         .select("*")
         .eq("id",Number(employeeId));
         console.log(data);
-        console.log(employeeId);
+        console.log(id);
 
       if(error) {
         console.error(error);
+        return null;
       } else {
-        SetUsers(data);
+        return data[0] || null;
       }
-      handleCheckUser();
     };
 
 
