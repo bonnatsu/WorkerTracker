@@ -19,6 +19,7 @@ function WorkTracker() {
   const [records, SetRecords] = useState([]);
   const [users,SetUsers] = useState([]);
   const [worklist,SetWorklist] = useState({});
+  const [mode,setMode] = useState("main");
 
 
   const handleCheckUser = () => {
@@ -155,34 +156,43 @@ function WorkTracker() {
     await fetchRecords();
   };
 
-  return (
-    <div>
-      <h2>作業時間管理</h2>
+return (
+  <div>
+    <h2>作業時間管理</h2>
 
-      <UserInput
-        employeeId={employeeId}
-        SetEmployeeId={SetEmployeeId}
-        employeeName={employeeName}
-        onCheckUser={handleCheckUser}
-      />
+    {mode === "main" && (
+      <>
+        <UserInput
+          employeeId={employeeId}
+          SetEmployeeId={SetEmployeeId}
+          employeeName={employeeName}
+          onCheckUser={handleCheckUser}
+        />
 
-      <WorkSelector
-        category={category}
-        Setcategory={Setcategory}
-        subcategory={subcategory}
-        Setsubcategory={Setsubcategory}
-        worklist={worklist}
-      />
+        <WorkSelector
+          category={category}
+          Setcategory={Setcategory}
+          subcategory={subcategory}
+          Setsubcategory={Setsubcategory}
+          worklist={worklist}
+        />
 
-      <ActionButtons
-        onStart={handleStart}
-        onEnd={handleEnd}
-        onAllEnd={handleAllEnd}
-      />
+        <ActionButtons
+          onStart={handleStart}
+          onEnd={handleEnd}
+          onAllEnd={handleAllEnd}
+          onOpenMaster={() => setMode("master")} // ←追加
+        />
 
-      <RecordList records={records} />
-    </div>
-  );
+        <RecordList records={records} />
+      </>
+    )}
+
+    {mode === "master" && (
+      <UsersMaster onBack={() => setMode("main")} />
+    )}
+  </div>
+);
 }
 
 export default WorkTracker;
