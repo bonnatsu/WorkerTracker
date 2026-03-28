@@ -2,7 +2,7 @@ import { useEffect,useState } from "react";
 import {supabase} from "../lib/supabase";
 
 
-function UsersMaster() {
+function UsersMaster({onBack}) {
     const [users, setUsers] = useState([]);
     const [name,setName] = useState([]);
 
@@ -56,6 +56,8 @@ function UsersMaster() {
                     </li>
                 ))}
             </ul>
+
+            <button onClick={() => onBack()}>戻る</button>
         </div>
     );
 }
