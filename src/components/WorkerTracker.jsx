@@ -118,7 +118,8 @@ function WorkTracker() {
       employee_name: employeeName,
       category,
       subcategory,
-      start_time: now
+      start_time: now,
+      work_date: now.toISOString().split("T")[0] 
         }
     ]);
 
