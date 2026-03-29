@@ -27,7 +27,7 @@ function ActionButtons({ onStart, onEnd, onAllEnd,onOpenMaster,onOpenWorkMaster 
   };
   return (
     <div>
-      <div style={{ display:"flex",flexDirection:"column",gap:"16px" }}>
+      <div style={{ textAlign: "center", marginTop: "16px" }}>
         <button style={btnStyle} onClick={onStart}>作業開始</button>
         <button style={btnStyle} onClick={onEnd}>作業終了</button>
       </div>
