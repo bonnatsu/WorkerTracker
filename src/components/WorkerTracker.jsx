@@ -187,7 +187,7 @@ return (
           onOpenWorkMaster={() => setMode("worklistmaster")}
         />
 
-        <RecordList records={records} />
+        {/*<RecordList records={records} />  */}
       </>
     )}
 
