@@ -7,7 +7,7 @@ function ActionButtons({ onStart, onEnd, onAllEnd,onOpenMaster,onOpenWorkMaster 
 
   }
   const btnStyle = {
-    width: "140px",
+    width: "100%",
     fontSize: "18px",
     padding: "16px",
     marginBottom: "16px",
@@ -17,7 +17,7 @@ function ActionButtons({ onStart, onEnd, onAllEnd,onOpenMaster,onOpenWorkMaster 
   };
 
   const subBtn = {
-    width: "200px",
+    width: "100%",
     height:"50px",
     fontSize:"16px",
     marginBottom:"12px",
