@@ -49,3 +49,5 @@ const [summary,SetSummary] = useState([]);
         </div>
     );
   }
+
+    export default SummaryList;
