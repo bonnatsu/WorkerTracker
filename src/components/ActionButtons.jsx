@@ -4,10 +4,11 @@ function ActionButtons({ onStart, onEnd, onAllEnd,onOpenMaster,onOpenWorkMaster 
   const btnStyle = {
     width: "140px",
     fontSize: "18px",
-    padding: "16px",
+    padding: "160px",
     marginBottom: "16px",
     height: "60px",
-    borderRadius: "10px"
+    borderRadius: "10px",
+    gap: "32px"
   };
 
   const subBtn = {
@@ -15,7 +16,8 @@ function ActionButtons({ onStart, onEnd, onAllEnd,onOpenMaster,onOpenWorkMaster 
     height:"50px",
     fontSize:"16px",
     marginBottom:"12px",
-    borderRadius:"10px"
+    borderRadius:"10px",
+    gap: "32px"
   };
 
   const flexMenu = {
@@ -30,7 +32,9 @@ function ActionButtons({ onStart, onEnd, onAllEnd,onOpenMaster,onOpenWorkMaster 
       <div style={{ textAlign: "center", marginTop: "16px" }}>
         <button style={btnStyle} onClick={onStart}>作業開始</button>
         <button style={btnStyle} onClick={onEnd}>作業終了</button>
+        
       </div>
+
       <div style={flexMenu}>
         <button style={subBtn} onClick={onAllEnd}>一括終了</button>
         <button style={subBtn} onClick={onOpenMaster}>ユーザマスタ編集</button>
