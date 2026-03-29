@@ -1,6 +1,6 @@
 import "./ActionButtons.css";
 
-function ActionButtons({ onStart, onEnd, onAllEnd,onOpenMaster,onOpenWorkMaster }) {
+function ActionButtons({ onStart, onEnd, onAllEnd,onOpenMaster,onOpenWorkMaster,onOpenSummary }) {
 
   return (
     <>
@@ -15,6 +15,7 @@ function ActionButtons({ onStart, onEnd, onAllEnd,onOpenMaster,onOpenWorkMaster 
         <button onClick={onAllEnd}>一括終了</button>
         <button onClick={onOpenMaster}>ユーザマスタ編集</button>
         <button onClick={onOpenWorkMaster}>作業項目編集</button>
+        <button onClick={onOpenSummary}>サマリ表示</button>
       </div>
     </>
 

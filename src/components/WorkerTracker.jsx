@@ -7,6 +7,7 @@ import { supabase } from '../lib/supabase';
 import { useEffect } from "react";
 import UsersMaster from "../master/UserMaster";
 import WorkListMaster from "../master/WorkListMaster";
+import Summary from "./Summary";
 
 
 
@@ -21,6 +22,7 @@ function WorkTracker() {
   const [records, SetRecords] = useState([]);
   const [worklist,SetWorklist] = useState({});
   const [mode,setMode] = useState("main");
+
 
 
   const handleCheckUser = async() => {
@@ -102,12 +104,26 @@ function WorkTracker() {
   //既存作業の完了
   const handleStart = async () => {
     const now = new Date();
+    const today = now.toISOString().split("T")[0];
 
-    await supabase
-      .from('worktracker')
-      .update({ end_time: now})
-      .eq('employee_id', Number(employeeId))
-      .is('end_time',null)
+    const {data:openRecords} = await supabase
+      .from("worktracker")
+      .select("*")
+      .eq("employee_id",employeeId)
+      .is("end_time",null)
+      .order("start_time",{ascending:false})
+      .limit(1);
+
+    const open = openRecords?.[0];
+
+    //同日作業の場合のみ終了
+    if (open && open.work_date === today) {
+      await supabase
+        .from("worktracker")
+        .update({end_time:now})
+        .eq("id",open.id);
+    }
+
 
   //新規作業開始
   const { error } = await supabase
@@ -159,6 +175,8 @@ function WorkTracker() {
     await fetchRecords();
   };
 
+
+
 return (
   <div>
     <h2>作業時間管理</h2>
@@ -186,6 +204,7 @@ return (
           onAllEnd={handleAllEnd}
           onOpenMaster={() => setMode("master")} // ←追加
           onOpenWorkMaster={() => setMode("worklistmaster")}
+          onOpenSummary={() => setMode("summary")}
         />
 
         {/*<RecordList records={records} />  */}
@@ -198,6 +217,10 @@ return (
 
     {mode === "worklistmaster" && (
       <WorkListMaster onBack={() => setMode("main")} />
+    )}
+
+    {mode === "summary" && (
+      <Summary onBack={() => setMode("main")} />
     )}
   </div>
 );
