@@ -1,10 +1,15 @@
 
 
 function ActionButtons({ onStart, onEnd, onAllEnd,onOpenMaster,onOpenWorkMaster }) {
+
+  const main_area = {
+    marginBottom:"180px"
+
+  }
   const btnStyle = {
     width: "140px",
     fontSize: "18px",
-    padding: "160px",
+    padding: "16px",
     marginBottom: "16px",
     height: "60px",
     borderRadius: "10px",
@@ -29,10 +34,12 @@ function ActionButtons({ onStart, onEnd, onAllEnd,onOpenMaster,onOpenWorkMaster 
   };
   return (
     <div>
-      <div style={{ textAlign: "center", marginTop: "16px" }}>
-        <button style={btnStyle} onClick={onStart}>作業開始</button>
-        <button style={btnStyle} onClick={onEnd}>作業終了</button>
-        
+      <div style={main_area}>
+        <div style={{ textAlign: "center", marginTop: "16px" }}>
+          <button style={btnStyle} onClick={onStart}>作業開始</button>
+          <button style={btnStyle} onClick={onEnd}>作業終了</button>
+          
+        </div>
       </div>
 
       <div style={flexMenu}>
