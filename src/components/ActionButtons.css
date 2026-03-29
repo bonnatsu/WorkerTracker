@@ -1,0 +1,40 @@
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+}
+
+.form-area {
+  margin-top:20px;
+  display:flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.action-buttons {
+  margin-top: 30px;
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.action-buttons button {
+  width: clamp(140px,20vw,220px);
+  height: 80px;
+}
+
+.admin-buttons {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.admin-buttons button {
+  width: clamp(160px,18vh,220px);
+}

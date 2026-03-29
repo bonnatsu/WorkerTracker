@@ -7,7 +7,7 @@ import { supabase } from '../lib/supabase';
 import { useEffect } from "react";
 import UsersMaster from "../master/UserMaster";
 import WorkListMaster from "../master/WorkListMaster";
-
+import "./App.css";
 
 
 
