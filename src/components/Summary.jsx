@@ -7,7 +7,7 @@ function Summary({ onBack }) {
 
   const fetchSummary = async () => {
     const { data, error } = await supabase
-      .from("work_summary_all")
+      .from("work_summary")
       .select("*")
       .order("work_date", { ascending: false });
 
