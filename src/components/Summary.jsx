@@ -1,53 +1,59 @@
-import { useEffect,useState } from "react";
-import {supabase} from "../lib/supabase";
-import "../App.css"
+import { useEffect, useState } from "react";
+import { supabase } from "../lib/supabase";
+import "../App.css";
 
-const [summary,SetSummary] = useState([]);
+function Summary({ onBack }) {
+  const [summary, setSummary] = useState([]);
+
   const fetchSummary = async () => {
-    const {data,error} = await supabase 
-      .from(work_summary)
+    const { data, error } = await supabase
+      .from("work_summary_all")
       .select("*")
-      .order("work_date",{ascending:false});
+      .order("work_date", { ascending: false });
 
     if (error) {
       console.error(error);
     } else {
-      SetSummary(data)
+      setSummary(data);
     }
   };
 
+  useEffect(() => {
+    fetchSummary();
+  }, []);
 
-  function SummaryList({summary}) {
-    const grouped = summary.reduce((acc,item) => {
-        if (!acc[item.work_date]) {
-        acc[item.work_date] = [];
-        }
-        acc[item.work_date].push(item);
-        return acc;
-        },
-    {});
-    return (
-        <div className="summary">
-            {Object.entries(grouped).map(([date,items]) => {
-                const total = items.reduce((sum,i) => sum +i.work_hours,0);
+  const grouped = summary.reduce((acc, item) => {
+    if (!acc[item.work_date]) {
+      acc[item.work_date] = [];
+    }
+    acc[item.work_date].push(item);
+    return acc;
+  }, {});
 
-                return (
-                    <div key={date} className="summary_day">
-                        <h3>{date} (合計：{total.toFixed(1)}h)</h3>
+  return (
+    <div className="summary">
+      <button onClick={onBack}>戻る</button>
 
-                        {items.map((item,index) => {
-                            <div key={index} className="summary_row">
-                                <span>
-                                    {item.category} - {item.subcategory}
-                                </span>
-                                <span>{item.work_hours.toFixed(1)}h</span>
-                            </div>
-                        })}
-                    </div>
-                );
-            })}
-        </div>
-    );
-  }
+      {Object.entries(grouped).map(([date, items]) => {
+        const total = items.reduce((sum, i) => sum + i.work_hours, 0);
 
-    export default SummaryList;
+        return (
+          <div key={date} className="summary-day">
+            <h3>{date}（合計：{total.toFixed(1)}h）</h3>
+
+            {items.map((item, index) => (
+              <div key={index} className="summary-row">
+                <span>
+                  {item.category} - {item.subcategory}
+                </span>
+                <span>{item.work_hours.toFixed(1)}h</span>
+              </div>
+            ))}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+export default Summary;
