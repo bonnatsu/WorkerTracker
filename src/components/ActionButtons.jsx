@@ -2,9 +2,11 @@
 
 function ActionButtons({ onStart, onEnd, onAllEnd,onOpenMaster,onOpenWorkMaster }) {
   const btnStyle = {
+    width: "100%",
     fontSize: "18px",
     padding: "16px",
-    minHeight: "60px",
+    marginBottom: "16px",
+    height: "60px",
     borderRadius: "10px"
   }
   return (
