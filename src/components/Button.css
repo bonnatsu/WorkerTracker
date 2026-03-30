@@ -7,4 +7,10 @@
 .grid button {
     width: 140px;
     height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

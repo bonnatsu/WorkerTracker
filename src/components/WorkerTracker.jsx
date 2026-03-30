@@ -31,21 +31,6 @@ function WorkTracker() {
   const [showModal,setShowModal] = useState(false);
   
 
-
-
-
-  const handleCheckUser = async() => {
-    const user = await fetchUsers(employeeId);
-
-    if (!user) {
-      alert("存在しない社員IDです")
-    }
-
-    SetEmployeeName(user.name);
-    fetchRecords();
-  };
-
-
     const fetchUsers = async (id) => {
       const { data, error } = await supabase
         .from('users')
@@ -190,7 +175,22 @@ return (
   <div className="layout">
     <h2>作業時間管理</h2>
 
+      <div className="side">
+        <button onClick={() => setMode("main")}>メイン</button>
+        <button onClick={() => setMode("master")}>社員マスタ</button>
+        <button onClick={() => setMode("worklistmaster")}>作業マスタ</button>
+        <button onClick={() => setMode("summary")}>集計</button>
+      </div>
+
       <div className="main">
+
+        {/* 選択状態表示 */}
+        {selectedCategory && (
+          <div className="selected-info">
+            選択中: {selectedCategory}
+            {selectedSubCategory && ` > ${selectedSubCategory}`}
+          </div>
+        )}
 
       {mode === "main" && !selectedCategory && (
         <>
