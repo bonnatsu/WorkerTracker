@@ -209,7 +209,7 @@ return (
         </>
       )}
 
-      {selectedCategory && selectedSubCategory && (
+      {selectedCategory && !selectedSubCategory && (
         <div className="grid">
           {worklist[selectedCategory].map((sub) => (
             <button
