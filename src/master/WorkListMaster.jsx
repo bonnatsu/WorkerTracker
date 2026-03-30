@@ -4,8 +4,6 @@ import { supabase } from "../lib/supabase";
 function WorkListMaster({ onBack }) {
 
     const [categories,setCategories] = useState([]);
-    const [subCategories,setSubCategories] = useState([]);
-
     const [newCategory,setNewCategory] = useState("");
     const [newSubCategory,setNewSubCategory] = useState("");
     const [selectedCategoryId,setSelectedCategoryId] = useState("");

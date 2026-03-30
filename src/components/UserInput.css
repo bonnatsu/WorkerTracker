@@ -15,3 +15,8 @@
     border-radius: 8px;
     border: 1px solid #ccc;
 }
+
+.user-name {
+  height: 24px; /* ← 固定 */
+  font-size: 14px;
+}

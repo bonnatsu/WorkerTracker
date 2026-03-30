@@ -22,6 +22,11 @@ function WorkTracker() {
   const [records, SetRecords] = useState([]);
   const [worklist,SetWorklist] = useState({});
   const [mode,setMode] = useState("main");
+
+  //ここ追加
+  const [selectedCategory,setSelectedCategory] = useState(null);
+  const [selectedSubCategory,setSelectedSubCategory] = useState(null);
+  const [showModal,setShowModal] = useState(false);
   
 
 
@@ -185,33 +190,18 @@ return (
 
     {mode === "main" && (
       <>
-        <UserInput
-          employeeId={employeeId}
-          employeeName={employeeName}
-          SetEmployeeId={SetEmployeeId}
-          onCheckUser={handleCheckUser}
-        />
+        <div>
+          <h3>新UIテスト</h3>
+        </div>
 
-        <ActionButtons
-          onStart={handleStart}
-          onEnd={handleEnd}
-          onAllEnd={handleAllEnd}
-          onOpenMaster={() => setMode("master")} // ←追加
-          onOpenWorkMaster={() => setMode("worklistmaster")}
-          onOpenSummary={() => setMode("summary")}
-        />
-
-        <WorkSelector
-          category={category}
-          Setcategory={Setcategory}
-          subcategory={subcategory}
-          Setsubcategory={Setsubcategory}
-          worklist={worklist}
-        />
-
-
-
-        {/*<RecordList records={records} />  */}
+        {Object.keys(worklist).map((cat) => (
+          <button
+          key={cat}
+          onClick={() => setSelectedCategory(cat)}
+          >
+            {cat}
+          </button>
+        ))}
       </>
     )}
 

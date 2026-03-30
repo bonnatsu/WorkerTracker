@@ -17,7 +17,9 @@ function UserInput({employeeId,employeeName,SetEmployeeId,onCheckUser}) {
                 onKeyDown={handleKeyDown}
                 />
 
-                {employeeName && <p>名前： {employeeName}</p>}
+                <p className="user-name">
+                    {employeeName ? `名前：${employeeName}` : ""}
+                </p>
         </div>
     );
 }
