@@ -192,7 +192,7 @@ return (
 
       <div className="main">
 
-      {mode === "main" && !selectedCategory (
+      {mode === "main" && !selectedCategory && (
         <>
           <div>
             <h3>カテゴリ選択</h3>
