@@ -1,3 +1,5 @@
+import "./WorkSelector.css"
+
 function WorkSelector({ category, Setcategory, subcategory, Setsubcategory, worklist }) {
   return (
     <div className="form-area">
