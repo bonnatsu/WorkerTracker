@@ -1,6 +1,6 @@
 function WorkSelector({ category, Setcategory, subcategory, Setsubcategory, worklist }) {
   return (
-    <div>
+    <div className="form-area">
       <select onChange={(e) => Setcategory(e.target.value)} value={category}>
         <option value="">大項目</option>
         {Object.keys(worklist).map((key) => (
