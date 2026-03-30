@@ -24,6 +24,7 @@
 .action-buttons button {
   width: clamp(140px,20vw,220px);
   height: 80px;
+  font-size: 20;
 }
 
 .admin-buttons {
@@ -37,4 +38,5 @@
 
 .admin-buttons button {
   width: clamp(160px,18vh,220px);
+  font-size: 20;
 }
