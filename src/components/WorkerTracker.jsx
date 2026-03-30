@@ -8,6 +8,8 @@ import { useEffect } from "react";
 import UsersMaster from "../master/UserMaster";
 import WorkListMaster from "../master/WorkListMaster";
 import Summary from "./Summary";
+import "./Button.css"
+import "./UI.css"
 
 
 
@@ -185,74 +187,77 @@ function WorkTracker() {
 
 
 return (
-  <div>
+  <div className="layout">
     <h2>作業時間管理</h2>
 
-    {mode === "main" && (
-      <>
+      <div className="main">
+
+      {mode === "main" && (
+        <>
+          <div>
+            <h3>新UIテスト</h3>
+          </div>
+
+          {Object.keys(worklist).map((cat) => (
+            <button
+            key={cat}
+            onClick={() => setSelectedCategory(cat)}
+            >
+              {cat}
+            </button>
+          ))}
+        </>
+      )}
+
+      {selectedCategory && (
         <div>
-          <h3>新UIテスト</h3>
+          {worklist[selectedCategory].map((sub) => (
+            <button
+              key={sub}
+              onClick={() => setSelectedSubCategory(sub)}
+            >
+              {sub}
+            </button>
+          ))}
         </div>
+      )}
 
-        {Object.keys(worklist).map((cat) => (
-          <button
-          key={cat}
-          onClick={() => setSelectedCategory(cat)}
-          >
-            {cat}
-          </button>
-        ))}
-      </>
-    )}
+      {selectedSubCategory && (
+        <div>
+            <input
+              placeholder="社員IDを入力してください"
+              value={employeeId}
+              onChange={(e) => SetEmployeeId(e.target.value)}
+            />
 
-    {selectedCategory && (
-      <div>
-        {worklist[selectedCategory].map((sub) => (
-          <button
-            key={sub}
-            onClick={() => setSelectedSubCategory(sub)}
-          >
-            {sub}
-          </button>
-        ))}
-      </div>
-    )}
+            <button onClick={() => setShowModal(true)}>
+              登録
+            </button>
+        </div>
+      )}
 
-    {selectedSubCategory && (
-      <div>
-          <input
-            placeholder="社員IDを入力してください"
-            value={employeeId}
-            onChange={(e) => SetEmployeeId(e.target.value)}
-          />
+      {setShowModal && (
+        <div>
+          <p>{selectedCategory} - {selectedSubCategory}</p>
+          <p>{employeeId}</p>
 
-          <button onClick={() => setShowModal(true)}>
-            登録
-          </button>
-      </div>
-    )}
+          <button onClick={handleStart}>登録</button>
+          <button onClick={() => setShowModal}>キャンセル</button>
+        </div>
+      )}
 
-    {setShowModal && (
-      <div>
-        <p>{selectedCategory} - {selectedSubCategory}</p>
-        <p>{employeeId}</p>
+      {mode === "master" && (
+        <UsersMaster onBack={() => setMode("main")} />
+      )}
 
-        <button onClick={handleStart}>登録</button>
-        <button onClick={() => setShowModal}>キャンセル</button>
-      </div>
-    )}
+      {mode === "worklistmaster" && (
+        <WorkListMaster onBack={() => setMode("main")} />
+      )}
 
-    {mode === "master" && (
-      <UsersMaster onBack={() => setMode("main")} />
-    )}
-
-    {mode === "worklistmaster" && (
-      <WorkListMaster onBack={() => setMode("main")} />
-    )}
-
-    {mode === "summary" && (
-      <Summary onBack={() => setMode("main")} />
-    )}
+      {mode === "summary" && (
+        <Summary onBack={() => setMode("main")} />
+      )}
+    </div>
   </div>
 );
 }

@@ -1,0 +1,28 @@
+.layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+.main {
+    flex: 1;
+    padding: 20px;
+}
+
+.side {
+    width: 120px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px;
+}
+
+.input-area {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.input-area input {
+    height: 50px;
+    width: 200px;
+}

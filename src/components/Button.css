@@ -1,0 +1,12 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(140px,1fr));
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+
+.grid button {
+    height: 80px;
+    font-size: 16px;
+}
