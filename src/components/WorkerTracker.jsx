@@ -142,23 +142,6 @@ function WorkTracker() {
     await fetchRecords();
   };
 
-  const handleEnd = async () => {
-    const now = new Date();
-
-    const { error } = await supabase
-      .from('worktracker')
-      .update({ end_time:now })
-      .eq('employee_id',employeeId)
-      .is('end_time',null);
-    if (error) {
-      console.error(error);
-      alert("終了失敗");
-    } else {
-      alert("作業終了")
-    }
-    await fetchRecords();
-  };
-
   const handleAllEnd = async () => {
     const now = new Date();
 
@@ -187,6 +170,30 @@ const handleCheckUser = async () => {
   setShowModal(true); // OKならモーダル出す
 };
 
+const handleEndByUser = async () => {
+  if (!employeeId) {
+    alert("社員ID入力してや");
+    return;
+  }
+
+  const now = new Date();
+
+  const { error } = await supabase
+    .from("worktracker")
+    .update({ end_time: now })
+    .eq("employee_id", Number(employeeId))
+    .is("end_time", null);
+
+  if (error) {
+    console.error(error);
+    alert("終了失敗");
+  } else {
+    alert("作業終了したで");
+    setEmployeeId("");
+    setMode("main");
+  }
+};
+
 
 
 return (
@@ -194,7 +201,8 @@ return (
     <h2>作業時間管理</h2>
 
       <div className="side">
-        <button onClick={() => setMode("main")}>メイン</button>
+        <button onClick={() => setMode("end")}>作業終了</button>
+        <button onClick={handleAllEnd}>一括終了</button>
         <button onClick={() => setMode("master")}>社員マスタ</button>
         <button onClick={() => setMode("worklistmaster")}>作業マスタ</button>
         <button onClick={() => setMode("summary")}>集計</button>
@@ -227,6 +235,32 @@ return (
         </>
       )}
 
+      {mode === "end" && (
+        <div className="input-area">
+          <input
+            placeholder="社員ID"
+            value={employeeId}
+            onChange={(e) => setEmployeeId(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleEndByUser();
+              }
+            }}
+          />
+
+          <button onClick={handleEndByUser}>
+            終了する
+          </button>
+
+          <button onClick={() => {
+            setMode("main");
+            setEmployeeId("");
+          }}>
+            ← 戻る
+          </button>
+        </div>
+)}
+
       {selectedCategory && !selectedSubCategory && (
         <div className="grid">
           {worklist[selectedCategory].map((sub) => (
@@ -253,13 +287,10 @@ return (
               }}
             />
 
-            <button onClick={() => setShowModal(true)}>
-              登録
-            </button>
-
             <button onClick={() =>  {
               setSelectedCategory(null);
               setSelectedSubCategory(null);
+              employeeId(null);
             }}>
               ← 戻る
             </button>
