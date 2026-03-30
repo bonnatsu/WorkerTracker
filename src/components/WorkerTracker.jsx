@@ -22,6 +22,8 @@ function WorkTracker() {
   const [records, SetRecords] = useState([]);
   const [worklist,SetWorklist] = useState({});
   const [mode,setMode] = useState("main");
+  
+
 
 
 
@@ -190,14 +192,6 @@ return (
           onCheckUser={handleCheckUser}
         />
 
-        <WorkSelector
-          category={category}
-          Setcategory={Setcategory}
-          subcategory={subcategory}
-          Setsubcategory={Setsubcategory}
-          worklist={worklist}
-        />
-
         <ActionButtons
           onStart={handleStart}
           onEnd={handleEnd}
@@ -206,6 +200,16 @@ return (
           onOpenWorkMaster={() => setMode("worklistmaster")}
           onOpenSummary={() => setMode("summary")}
         />
+
+        <WorkSelector
+          category={category}
+          Setcategory={Setcategory}
+          subcategory={subcategory}
+          Setsubcategory={Setsubcategory}
+          worklist={worklist}
+        />
+
+
 
         {/*<RecordList records={records} />  */}
       </>
