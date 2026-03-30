@@ -209,7 +209,7 @@ return (
         </>
       )}
 
-      {selectedCategory && (
+      {selectedCategory && selectedSubCategory && (
         <div className="grid">
           {worklist[selectedCategory].map((sub) => (
             <button
@@ -234,7 +234,10 @@ return (
               登録
             </button>
 
-            <button onClick={() => setSelectedCategory(null)}>
+            <button onClick={() =>  {
+              setSelectedCategory(null);
+              setSelectedSubCategory(null);
+            }}>
               ← 戻る
             </button>
         </div>
