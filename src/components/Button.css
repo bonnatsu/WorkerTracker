@@ -1,8 +1,10 @@
 .grid {
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
 }
 
-
 .grid button {
-    width: 100%;
+    width: 140px;
+    height: 70px;
 }
