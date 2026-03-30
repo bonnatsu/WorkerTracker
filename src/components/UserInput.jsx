@@ -1,3 +1,6 @@
+import "./UserInput.css"
+
+
 function UserInput({employeeId,employeeName,SetEmployeeId,onCheckUser}) {
     const handleKeyDown = (e) => {
         if (e.key === "Enter") {

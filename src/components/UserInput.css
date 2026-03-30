@@ -1,0 +1,17 @@
+.form-aria {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+}
+
+.form-area input {
+    width: clamp(200px,25vw,300px);
+    height: 50px;
+    font-size: 16px;
+
+    padding: 0 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
