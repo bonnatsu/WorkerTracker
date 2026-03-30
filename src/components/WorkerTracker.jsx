@@ -169,6 +169,24 @@ function WorkTracker() {
     await fetchRecords();
   };
 
+const handleCheckUser = async () => {
+  if (!employeeId) {
+    alert("社員ID入力してや");
+    return;
+  }
+
+  const user = await fetchUsers(employeeId);
+
+  if (!user) {
+    alert("存在しない社員IDです");
+    SetEmployeeId(""); // リセット
+    return;
+  }
+
+  SetEmployeeName(user.name);
+  setShowModal(true); // OKならモーダル出す
+};
+
 
 
 return (
@@ -228,6 +246,11 @@ return (
               placeholder="社員IDを入力してください"
               value={employeeId}
               onChange={(e) => SetEmployeeId(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  handleCheckUser();
+                }
+              }}
             />
 
             <button onClick={() => setShowModal(true)}>
