@@ -232,6 +232,16 @@ return (
       </div>
     )}
 
+    {setShowModal && (
+      <div>
+        <p>{selectedCategory} - {selectedSubCategory}</p>
+        <p>{employeeId}</p>
+
+        <button onClick={handleStart}>登録</button>
+        <button onClick={() => setShowModal}>キャンセル</button>
+      </div>
+    )}
+
     {mode === "master" && (
       <UsersMaster onBack={() => setMode("main")} />
     )}
