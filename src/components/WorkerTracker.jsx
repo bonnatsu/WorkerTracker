@@ -240,7 +240,7 @@ return (
           <input
             placeholder="社員ID"
             value={employeeId}
-            onChange={(e) => setEmployeeId(e.target.value)}
+            onChange={(e) => SetEmployeeId(e.target.value)}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
                 handleEndByUser();
