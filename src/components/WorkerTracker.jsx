@@ -192,10 +192,10 @@ return (
 
       <div className="main">
 
-      {mode === "main" && (
+      {mode === "main" && !selectedCategory (
         <>
           <div>
-            <h3>新UIテスト</h3>
+            <h3>カテゴリ選択</h3>
           </div>
 
           <div className="grid">
@@ -232,6 +232,10 @@ return (
 
             <button onClick={() => setShowModal(true)}>
               登録
+            </button>
+
+            <button onClick={() => setSelectedCategory(null)}>
+              ← 戻る
             </button>
         </div>
       )}
