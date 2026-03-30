@@ -205,6 +205,33 @@ return (
       </>
     )}
 
+    {selectedCategory && (
+      <div>
+        {worklist[selectedCategory].map((sub) => (
+          <button
+            key={sub}
+            onClick={() => setSelectedSubCategory(sub)}
+          >
+            {sub}
+          </button>
+        ))}
+      </div>
+    )}
+
+    {selectedSubCategory && (
+      <div>
+          <input
+            placeholder="社員IDを入力してください"
+            value={employeeId}
+            onChange={(e) => SetEmployeeId(e.target.value)}
+          />
+
+          <button onClick={() => setShowModal(true)}>
+            登録
+          </button>
+      </div>
+    )}
+
     {mode === "master" && (
       <UsersMaster onBack={() => setMode("main")} />
     )}
