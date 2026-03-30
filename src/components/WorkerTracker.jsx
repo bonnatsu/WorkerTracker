@@ -198,19 +198,19 @@ return (
             <h3>新UIテスト</h3>
           </div>
 
-          {Object.keys(worklist).map((cat) => (
-            <button
-            key={cat}
-            onClick={() => setSelectedCategory(cat)}
-            >
-              {cat}
-            </button>
-          ))}
+          <div className="grid">
+            {Object.keys(worklist).map((cat) => (
+              <button key={cat} onClick={() => setSelectedCategory(cat)}>
+                {cat}
+              </button>
+
+            ))}
+          </div>
         </>
       )}
 
       {selectedCategory && (
-        <div>
+        <div className="grid">
           {worklist[selectedCategory].map((sub) => (
             <button
               key={sub}
@@ -223,7 +223,7 @@ return (
       )}
 
       {selectedSubCategory && (
-        <div>
+        <div className="input-area">
             <input
               placeholder="社員IDを入力してください"
               value={employeeId}
@@ -236,13 +236,13 @@ return (
         </div>
       )}
 
-      {setShowModal && (
+      {showModal && (
         <div>
           <p>{selectedCategory} - {selectedSubCategory}</p>
           <p>{employeeId}</p>
 
           <button onClick={handleStart}>登録</button>
-          <button onClick={() => setShowModal}>キャンセル</button>
+          <button onClick={() => setShowModal(false)}>キャンセル</button>
         </div>
       )}
 
