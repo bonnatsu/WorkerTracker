@@ -29,6 +29,7 @@ function WorkTracker() {
   const [selectedCategory,setSelectedCategory] = useState(null);
   const [selectedSubCategory,setSelectedSubCategory] = useState(null);
   const [showModal,setShowModal] = useState(null);
+  const [activeWorks,setActiveWorks] = useEffect([]);
   
 
     const fetchUsers = async (id) => {
@@ -78,14 +79,31 @@ function WorkTracker() {
             .map((sub) => sub.subcategory);
       });
 
-
-
       SetWorklist(grouped);
     };
 
     fetchWorklist();
   }, []);
 
+  //作業中一覧取得
+  const fetchActiveWorks = async () => {
+    const { data,error} = await supabase
+    .select("worktracker")
+    .select("*")
+    .is("end_time",null)
+    .order("start_time",{ascending:false});
+
+    if (error) {
+      console.error(error);
+    } else {
+      setActiveWorks(data);
+    }
+  };
+
+  useEffect(() => {
+    fetchActiveWorks();
+  },[]);
+ 
 
   //既存作業の完了
   const handleStart = async () => {
@@ -139,6 +157,7 @@ function WorkTracker() {
     setSelectedCategory(null)
     setSelectedSubCategory(null)
     setMode("main")
+    fetchActiveWorks()
   };
 
   const handleAllEnd = async () => {
@@ -149,6 +168,7 @@ function WorkTracker() {
       .update ({ end_time:now})
       .is('end_time',null)
     await fetchRecords();
+    await fetchActiveWorks()
   };
 
 const handleCheckUser = async () => {
@@ -191,6 +211,7 @@ const handleEndByUser = async () => {
     SetEmployeeId("");
     SetEmployeeName("")
     setMode("main");
+    fetchActiveWorks()
   }
 };
 
@@ -231,6 +252,18 @@ return (
               </button>
 
             ))}
+
+            {activeWorks.length > 0 && (
+              <div className="active_list">
+                <h3>作業中一覧</h3>
+
+                {activeWorks.map((work) => {
+                  <div key={work.id} className="active-item">
+                    {work.employee_name}:{work.category} ＞ {work.subcategory}
+                  </div>
+                })}
+              </div>
+            )} 
           </div>
         </>
       )}
