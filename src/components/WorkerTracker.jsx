@@ -69,23 +69,18 @@ function WorkTracker() {
     const fetchWorklist = async () => {
       const { data:catData, error:catError } = await supabase
         .from("categories")
-        .select("*");
-
-      const {data:subData, error: subError} = await supabase
-        .from("subcategories")
-        .select("*");
-
-      if (catError || subError) {
-        console.error(catError || subError);
-        return;
-      }
+        .select(
+          id,
+          category,
+          subcategories(
+            subcategory
+          )
+        );
 
       const grouped = {};
 
       catData.forEach((cat) => {
-          grouped[cat.category] = subData
-            .filter((sub) => sub.category_id === cat.id)
-            .map((sub) => sub.subcategory);
+          grouped[cat.category] = cat.subcategories.map(sub => sub.subcategory)
       });
 
       SetWorklist(grouped);
