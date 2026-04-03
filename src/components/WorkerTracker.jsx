@@ -65,7 +65,11 @@ function WorkTracker() {
 
 
 
-  useEffect (() => {
+const [loaded, setLoaded] = useState(false);
+
+useEffect(() => {
+  if (loaded) return;
+
   const fetchWorklist = async () => {
     console.log("fetchWorklist");
 
@@ -79,17 +83,17 @@ function WorkTracker() {
         )
       `);
 
-      const grouped = {};
+    const grouped = {};
+    data.forEach(cat => {
+      grouped[cat.category] = cat.subcategories.map(sub => sub.subcategory);
+    });
 
-      catData.forEach((cat) => {
-          grouped[cat.category] = cat.subcategories.map(sub => sub.subcategory)
-      });
+    setWorklist(grouped);
+    setLoaded(true);
+  };
 
-      SetWorklist(grouped);
-    };
-
-    fetchWorklist();
-  }, []);
+  fetchWorklist();
+}, [loaded]);
 
 
   //既存作業の完了
