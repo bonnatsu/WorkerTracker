@@ -18,9 +18,6 @@ function WorkTracker() {
   const [employeeId, SetEmployeeId] = useState(null);
   const [employeeName, SetEmployeeName] = useState("");
 
-  const [category, Setcategory] = useState("");
-  const [subcategory, Setsubcategory] = useState("");
-
   const [records, SetRecords] = useState([]);
   const [worklist,SetWorklist] = useState({});
   const [mode,setMode] = useState("main");
@@ -136,8 +133,8 @@ function WorkTracker() {
       {
       employee_id: employeeId,
       employee_name: employeeName,
-      category,
-      subcategory,
+      category:setSelectedCategory,
+      subcategory:setSelectedSubCategory,
       start_time: now,
       work_date: now.toISOString().split("T")[0] 
         }
