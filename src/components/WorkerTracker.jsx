@@ -257,7 +257,7 @@ return (
 
                 {activeWorks.map((work) => (
                   <div key={work.id} className="active-item">
-                    {work.employee_name}:{work.category} ＞ {work.subcategory}{console.log(activeWorks)}
+                    {work.employee_name}:{work.category} ＞ {work.subcategory}　開始時間：{work.start_time}
                   </div>
                 ))}
               </div>
