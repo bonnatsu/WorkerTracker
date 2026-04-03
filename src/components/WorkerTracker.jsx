@@ -29,7 +29,7 @@ function WorkTracker() {
   const [selectedCategory,setSelectedCategory] = useState(null);
   const [selectedSubCategory,setSelectedSubCategory] = useState(null);
   const [showModal,setShowModal] = useState(null);
-  const [activeWorks,setActiveWorks] = useEffect([]);
+  const [activeWorks,setActiveWorks] = useState([]);
   
 
     const fetchUsers = async (id) => {
@@ -88,7 +88,7 @@ function WorkTracker() {
   //作業中一覧取得
   const fetchActiveWorks = async () => {
     const { data,error} = await supabase
-    .select("worktracker")
+    .from("worktracker")
     .select("*")
     .is("end_time",null)
     .order("start_time",{ascending:false});
@@ -252,6 +252,7 @@ return (
               </button>
 
             ))}
+          </div>
 
             {activeWorks.length > 0 && (
               <div className="active_list">
@@ -264,7 +265,6 @@ return (
                 })}
               </div>
             )} 
-          </div>
         </>
       )}
 
