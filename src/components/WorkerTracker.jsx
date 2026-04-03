@@ -31,7 +31,12 @@ function WorkTracker() {
   //UTCをJSTに変換
   const formatJST = (date) =>
     new Date(date).toLocaleDateString("ja-JP", {
-      timeZone: "Asia/Tokyo"
+      timeZone: "Asia/Tokyo",
+      year: "numeric",
+      month:"2-digit",
+      day:"2-digit",
+      hour:"2-digit",
+      minute:"2-digit"
     });
   
 
