@@ -144,8 +144,8 @@ function WorkTracker() {
     SetEmployeeId("")
     SetEmployeeName("")
     setMode("main")
-    selectedCategory("")
-    selectedSubCategory("")
+    selectedCategory(false)
+    selectedSubCategory(false)
   };
 
   const handleAllEnd = async () => {
