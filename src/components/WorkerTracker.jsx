@@ -260,7 +260,7 @@ return (
 
                 {activeWorks.map((work) => (
                   <div key={work.id} className="active-item">
-                    {work.employee_name}:{work.category} ＞ {work.subcategory}
+                    {work.employee_name}:{work.categories} ＞ {work.subcategories}
                   </div>
                 ))}
               </div>
