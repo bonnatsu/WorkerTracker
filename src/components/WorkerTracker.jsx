@@ -26,9 +26,9 @@ function WorkTracker() {
   const [mode,setMode] = useState("main");
 
   //ここ追加
-  const [selectedCategory,setSelectedCategory] = useState(null);
-  const [selectedSubCategory,setSelectedSubCategory] = useState(null);
-  const [showModal,setShowModal] = useState(false);
+  const [selectedCategory,setSelectedCategory] = useState("");
+  const [selectedSubCategory,setSelectedSubCategory] = useState("");
+  const [showModal,setShowModal] = useState("");
   
 
     const fetchUsers = async (id) => {
@@ -292,7 +292,7 @@ return (
             <button onClick={() =>  {
               setSelectedCategory(null);
               setSelectedSubCategory(null);
-              employeeId(null);
+              SetEmployeeId("");
             }}>
               ← 戻る
             </button>
