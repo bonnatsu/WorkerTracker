@@ -27,6 +27,12 @@ function WorkTracker() {
   const [selectedSubCategory,setSelectedSubCategory] = useState(null);
   const [showModal,setShowModal] = useState(null);
   const [activeWorks,setActiveWorks] = useState([]);
+
+  //UTCをJSTに変換
+  const formatJST = (date) =>
+    new Date(date).toLocaleDateString("ja-JP", {
+      timeZone: "Asia/Tokyo"
+    });
   
 
     const fetchUsers = async (id) => {
@@ -257,7 +263,7 @@ return (
 
                 {activeWorks.map((work) => (
                   <div key={work.id} className="active-item">
-                    {work.employee_name}:{work.category} ＞ {work.subcategory}　開始時間：{work.start_time.split("T") [0]}
+                    {work.employee_name}:{work.category} ＞ {work.subcategory}　開始時間：{formatJST(work.start_time)}
                   </div>
                 ))}
               </div>
