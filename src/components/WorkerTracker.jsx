@@ -140,6 +140,8 @@ function WorkTracker() {
       alert("作業開始");
     }
     await fetchRecords();
+
+    SetEmployeeId("")
   };
 
   const handleAllEnd = async () => {
@@ -189,7 +191,7 @@ const handleEndByUser = async () => {
     alert("終了失敗");
   } else {
     alert("作業終了したで");
-    setEmployeeId("");
+    SetEmployeeId("");
     setMode("main");
   }
 };
@@ -254,7 +256,7 @@ return (
 
           <button onClick={() => {
             setMode("main");
-            setEmployeeId("");
+            SetEmployeeId("");
           }}>
             ← 戻る
           </button>
