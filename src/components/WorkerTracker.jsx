@@ -300,7 +300,7 @@ return (
       {showModal && (
         <div>
           <p>{selectedCategory} - {selectedSubCategory}</p>
-          <p>{employeeId}</p>
+          <p>ユーザID：{employeeId}　ユーザ名：{employeeName}</p>
 
           <button onClick={handleStart}>登録</button>
           <button onClick={() => setShowModal(false)}>キャンセル</button>
