@@ -259,6 +259,7 @@ return (
           <button onClick={() => {
             setMode("main");
             SetEmployeeId("");
+            SetEmployeeName("")
           }}>
             ← 戻る
           </button>
@@ -307,7 +308,11 @@ return (
           <p>ユーザID：{employeeId}　ユーザ名：{employeeName}</p>
 
           <button onClick={handleStart}>登録</button>
-          <button onClick={() => setShowModal(false)}>キャンセル</button>
+          <button onClick={() => {
+            setShowModal(false)
+            SetEmployeeId("")
+            }
+          }>キャンセル</button>
         </div>
       )}
 
