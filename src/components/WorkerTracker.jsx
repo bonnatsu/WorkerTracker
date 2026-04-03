@@ -133,8 +133,8 @@ function WorkTracker() {
       {
       employee_id: employeeId,
       employee_name: employeeName,
-      category:setSelectedCategory,
-      subcategory:setSelectedSubCategory,
+      category:selectedCategory,
+      subcategory:selectedSubCategory,
       start_time: now,
       work_date: now.toISOString().split("T")[0] 
         }
