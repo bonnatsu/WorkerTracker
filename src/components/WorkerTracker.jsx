@@ -65,35 +65,26 @@ function WorkTracker() {
 
 
 
-const [loaded, setLoaded] = useState(false);
+  useEffect (() => {
+    const fetchWorklist = async () => {
+    const { data:catData } = await supabase.from("categories").select("*");
+    const { data:subData } = await supabase.from("subcategories").select("*");
 
-useEffect(() => {
-  if (loaded) return;
+      const grouped = {};
 
-  const fetchWorklist = async () => {
-    console.log("fetchWorklist");
+      catData.forEach((cat) => {
+          grouped[cat.category] = subData
+            .filter((sub) => sub.category_id === cat.id)
+            .map((sub) => sub.subcategory);
+      });
 
-    const { data } = await supabase
-      .from("categories")
-      .select(`
-        id,
-        category,
-        subcategories (
-          subcategory
-        )
-      `);
 
-    const grouped = {};
-    data.forEach(cat => {
-      grouped[cat.category] = cat.subcategories.map(sub => sub.subcategory);
-    });
 
-    setWorklist(grouped);
-    setLoaded(true);
-  };
+      SetWorklist(grouped);
+    };
 
-  fetchWorklist();
-}, [loaded]);
+    fetchWorklist();
+  }, []);
 
 
   //既存作業の完了
