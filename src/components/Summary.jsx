@@ -2,6 +2,15 @@ import { useEffect, useState } from "react";
 import { supabase } from "../lib/supabase";
 import "../App.css";
 
+
+const formatDateJST = (date) => 
+  new Date(date + "T00:00:00").toLocaleDateString("ja-JP", {
+    timezone:"Asia/Tokyo",
+    year:"numeric",
+    month:"2-digit",
+    day:"2-digit"
+  })
+
 function Summary({ onBack }) {
   const [summary, setSummary] = useState([]);
 
@@ -38,8 +47,8 @@ function Summary({ onBack }) {
         const total = items.reduce((sum, i) => sum + i.work_hours, 0);
 
         return (
-          <div key={date} className="summary-day">
-            <h3>{date}（合計：{total.toFixed(1)}h）</h3>
+          <div key={formatDateJST(date)} className="summary-day">
+            <h3>{formatDateJST(date)}（合計：{total.toFixed(1)}h）</h3>
 
             {items.map((item, index) => (
               <div key={index} className="summary-row">
