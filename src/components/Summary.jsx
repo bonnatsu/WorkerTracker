@@ -3,13 +3,15 @@ import { supabase } from "../lib/supabase";
 import "../App.css";
 
 
-const formatDateJST = (date) => 
-  new Date(date + "T00:00:00").toLocaleDateString("ja-JP", {
-    timezone:"Asia/Tokyo",
-    year:"numeric",
-    month:"2-digit",
-    day:"2-digit"
-  })
+const formatDateJST = (date) => {
+  const d = new Date(date);
+  return d.toLocaleDateString("ja-JP", {
+    timeZone: "Asia/Tokyo",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit"
+  });
+};
 
 function Summary({ onBack }) {
   const [summary, setSummary] = useState([]);
