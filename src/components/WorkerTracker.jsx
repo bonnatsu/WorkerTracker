@@ -257,7 +257,7 @@ return (
 
                 {activeWorks.map((work) => (
                   <div key={work.id} className="active-item">
-                    {work.employee_name}:{work.category} ＞ {work.subcategory}　開始時間：{work.start_time.toISOString().split("T")[0] }
+                    {work.employee_name}:{work.category} ＞ {work.subcategory}　開始時間：{work.start_time.split("T") [0]}
                   </div>
                 ))}
               </div>
