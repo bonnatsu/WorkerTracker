@@ -143,6 +143,7 @@ function WorkTracker() {
 
     SetEmployeeId("")
     SetEmployeeName("")
+    setMode("main")
   };
 
   const handleAllEnd = async () => {
