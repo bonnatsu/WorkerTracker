@@ -66,16 +66,18 @@ function WorkTracker() {
 
 
   useEffect (() => {
-    const fetchWorklist = async () => {
-      const { data:catData, error:catError } = await supabase
-        .from("categories")
-        .select(
-          id,
-          category,
-          subcategories(
-            subcategory
-          )
-        );
+  const fetchWorklist = async () => {
+    console.log("fetchWorklist");
+
+    const { data } = await supabase
+      .from("categories")
+      .select(`
+        id,
+        category,
+        subcategories (
+          subcategory
+        )
+      `);
 
       const grouped = {};
 
