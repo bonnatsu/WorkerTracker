@@ -142,6 +142,7 @@ function WorkTracker() {
     await fetchRecords();
 
     SetEmployeeId("")
+    SetEmployeeName("")
   };
 
   const handleAllEnd = async () => {
@@ -192,6 +193,7 @@ const handleEndByUser = async () => {
   } else {
     alert("作業終了したで");
     SetEmployeeId("");
+    SetEmployeeName("")
     setMode("main");
   }
 };
