@@ -258,11 +258,11 @@ return (
               <div className="active_list">
                 <h3>作業中一覧</h3>
 
-                {activeWorks.map((work) => {
+                {activeWorks.map((work) => (
                   <div key={work.id} className="active-item">
                     {work.employee_name}:{work.category} ＞ {work.subcategory}
                   </div>
-                })}
+                ))}
               </div>
             )} 
         </>
