@@ -82,10 +82,9 @@ function WorkListMaster({ onBack }) {
                             onChange={(e) => setNewSubCategory(e.target.value)}
                             placeholder="サブカテゴリ名"
                         />
-                        <button onClick={ async () => {
-                            await handleAddSubCategory(selectedCategoryId);
-                            setViewMode("category");}
-                        }>
+                        <button onClick={  () => {
+                             handleAddSubCategory(selectedCategoryId);
+                        }}>
                             追加
                         </button>
 
