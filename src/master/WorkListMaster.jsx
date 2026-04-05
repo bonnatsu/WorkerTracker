@@ -7,6 +7,7 @@ function WorkListMaster({ onBack }) {
     const [newCategory,setNewCategory] = useState("");
     const [newSubCategory,setNewSubCategory] = useState("");
     const [selectedCategoryId,setSelectedCategoryId] = useState("");
+    const [subCategories, setSubCategories] = useState([]);
 
 
     const fetchData = async () => {
