@@ -64,23 +64,6 @@ function WorkListMaster({ onBack }) {
 
             <hr />
 
-
-
-            <h3>サブカテゴリ追加</h3>
-
-            <select
-                value={selectedCategoryId}
-                onChange={(e) => setSelectedCategoryId(e.target.value)}
-            >
-                <option value="">カテゴリ選択</option>
-                {categories.map((cat) => (
-                    <option key={cat.id} value={cat.id}>
-                        {cat.category}
-                    </option>
-                ))}
-            </select>
-
-
         </div>
 
         <div className="master-right">
@@ -88,7 +71,7 @@ function WorkListMaster({ onBack }) {
             {viewMode === "category" && (
                 <ul>
                     {categories.map(cat => (
-                        <li key={cat.id}>
+                        <li key={cat.id} className="category-item clickable">
                             <button onClick={() => {
                                 setSelectedCategoryId(cat.id);
                                 setViewMode("subcategory");
