@@ -61,6 +61,23 @@ function WorkListMaster({ onBack }) {
 
             <hr />
 
+            <h3>登録済み一覧</h3>
+
+            {categories.map((cat) => (
+                <div key={cat.id} style={{ marginBottom:"10px"}}>
+                    <strong>{cat.category}</strong>
+
+
+                    <ul>
+                        {subCategories
+                            .filter((sub) => sub.category_id === cat.id)
+                            .map((sub) => (
+                                <li key={sub.id}>{sub.subcategory}</li>
+                            ))}
+                    </ul>
+                </div>
+            ))}
+
             <h3>サブカテゴリ追加</h3>
 
             <select
