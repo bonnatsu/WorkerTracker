@@ -50,7 +50,6 @@ function WorkListMaster({ onBack }) {
     return (
         <div className="master-container">
 
-            {/* 左 */}
             <div className="master-left">
 
                 {viewMode === "category" && (
@@ -71,7 +70,10 @@ function WorkListMaster({ onBack }) {
                 {viewMode === "subcategory" && (
                     <>
                         <p>
-                            カテゴリ：
+                            サブカテゴリ追加
+                        </p>
+                        <p>
+                            選択中カテゴリ：
                             {categories.find(c => c.id === Number(selectedCategoryId))?.category}
                         </p>
 
@@ -94,6 +96,9 @@ function WorkListMaster({ onBack }) {
 
             {/* 右 */}
             <div className="master-right">
+                <p>
+                    登録済みカテゴリ：
+                </p>
 
                 {viewMode === "category" && (
                     <ul>
