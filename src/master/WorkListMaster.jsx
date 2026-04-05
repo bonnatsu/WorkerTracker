@@ -9,6 +9,7 @@ function WorkListMaster({ onBack }) {
     const [newSubCategory,setNewSubCategory] = useState("");
     const [selectedCategoryId,setSelectedCategoryId] = useState("");
     const [subCategories, setSubCategories] = useState([]);
+    const [viewMode,setViewMode] = useState("category");
 
 
     const fetchData = async () => {
@@ -88,18 +89,26 @@ function WorkListMaster({ onBack }) {
                 追加
             </button>
         </div>
-        
+
         <div className="master-right">
 
-            {!selectedCategoryId && (
+            {viewMode === "category" && (
                 <ul>
                     {categories.map(cat => (
-                        <li key={cat.id}>{cat.category}</li>
+                        <li key={cat.id}>
+                            <button onClick={() => {
+                                selectedCategoryId(cat.id);
+                                setViewMode == "subcategory";
+                            }}>
+                                {cat.category}
+                            </button>
+                            {cat.category}
+                        </li>
                     ))}
                 </ul>
             )}
 
-            {selectedCategoryId && (
+            {viewMode === "subcategory" && (
                 <>
                     <p>
                         カテゴリ：
@@ -113,6 +122,10 @@ function WorkListMaster({ onBack }) {
                                 <li key={sub.id}>{sub.subcategory}</li>
                             ))}
                     </ul>
+
+                    <button onClick={() => setViewMode("category")}>
+                        ← 戻る
+                    </button>
                 </>
             )}
 </div>
