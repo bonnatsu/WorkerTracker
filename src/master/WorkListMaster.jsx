@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../lib/supabase";
+import "./WorkListMaster.css"
 
 function WorkListMaster({ onBack }) {
 
@@ -46,7 +47,8 @@ function WorkListMaster({ onBack }) {
     };
 
     return (
-        <div>
+    <div className="master-container">
+        <div className="master-left">
             <h2>作業マスタ</h2>
             <button onClick={onBack}>戻る</button>
 
@@ -61,13 +63,7 @@ function WorkListMaster({ onBack }) {
 
             <hr />
 
-            <h3>登録済みカテゴリ一覧</h3>
 
-            {categories.map((cat) => (
-                <div key={cat.id} style={{ marginBottom:"10px"}}>
-                    <strong>{cat.category}</strong>
-                </div>
-            ))}
 
             <h3>サブカテゴリ追加</h3>
 
@@ -92,6 +88,16 @@ function WorkListMaster({ onBack }) {
                 追加
             </button>
         </div>
+        <div className="master-right">
+            <h3>登録済みカテゴリ一覧</h3>
+
+            {categories.map((cat) => (
+                <div key={cat.id} style={{ marginBottom:"10px"}}>
+                    <strong>{cat.category}</strong>
+                </div>
+            ))}
+        </div>
+    </div>
     );
 
 }

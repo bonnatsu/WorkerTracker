@@ -1,0 +1,13 @@
+.master-container {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.master-left {
+    width: 300px;
+}
+
+.master-right {
+    flex: 1;
+}
