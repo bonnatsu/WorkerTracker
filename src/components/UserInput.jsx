@@ -1,7 +1,7 @@
 import "./UserInput.css"
 
 
-function UserInput({employeeId,employeeName,SetEmployeeId,onCheckUser}) {
+function UserInput({ employeeId, employeeName, SetEmployeeId, onCheckUser }) {
     const handleKeyDown = (e) => {
         if (e.key === "Enter") {
             onCheckUser();
@@ -15,11 +15,11 @@ function UserInput({employeeId,employeeName,SetEmployeeId,onCheckUser}) {
                 value={employeeId}
                 onChange={(e) => SetEmployeeId(e.target.value)}
                 onKeyDown={handleKeyDown}
-                />
+            />
 
-                <p className="user-name">
-                    {employeeName ? `名前：${employeeName}` : ""}
-                </p>
+            <p className="user-name">
+                {employeeName ? `名前：${employeeName}` : ""}
+            </p>
         </div>
     );
 }

@@ -1,13 +1,13 @@
-import { useEffect,useState } from "react";
-import {supabase} from "../lib/supabase";
+import { useEffect, useState } from "react";
+import { supabase } from "../lib/supabase";
 
 
-function UsersMaster({onBack}) {
+function UsersMaster({ onBack }) {
     const [users, setUsers] = useState([]);
-    const [name,setName] = useState([]);
+    const [name, setName] = useState([]);
 
     const fetchUsers = async () => {
-        const {data, error} = await supabase.from("users").select("*");
+        const { data, error } = await supabase.from("users").select("*");
 
         if (error) {
             console.error(error);
@@ -22,7 +22,7 @@ function UsersMaster({onBack}) {
     }, []);
 
     const handleAdd = async () => {
-        const {error} = await supabase.from("users").insert([{name}]);
+        const { error } = await supabase.from("users").insert([{ name }]);
 
         if (!error) {
             setName("");
@@ -31,7 +31,7 @@ function UsersMaster({onBack}) {
     };
 
     const handleDelete = async (id) => {
-        await supabase.from("users").delete().eq("id",id);
+        await supabase.from("users").delete().eq("id", id);
         fetchUsers();
     };
 
@@ -63,4 +63,4 @@ function UsersMaster({onBack}) {
 }
 
 
-    export default UsersMaster;
+export default UsersMaster;
