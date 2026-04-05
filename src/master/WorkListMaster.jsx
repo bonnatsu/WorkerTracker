@@ -118,11 +118,15 @@ function WorkListMaster({ onBack }) {
                 )}
 
                 {viewMode === "subcategory" && (
-                    <p>
-                        {categories.find(c => c.id === Number(selectedCategoryId))?.category}
-                        のサブカテゴリ一覧
-                    </p>
-                )}
+                    <>
+                        <p>
+                            {categories.find(c => c.id === Number(selectedCategoryId))?.category}
+                            のサブカテゴリ一覧
+                        </p>
+                        <ul> {subCategories.filter((sub) => sub.category_id === Number(selectedCategoryId)).map((sub) => (
+                            <li key={sub.id}>{sub.subcategory}</li>))}
+                        </ul>
+                    </>)}
 
             </div>
 
