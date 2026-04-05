@@ -96,9 +96,11 @@ function WorkListMaster({ onBack }) {
 
             {/* 右 */}
             <div className="master-right">
-                <p>
-                    登録済みカテゴリ：
-                </p>
+                <h3>
+                    {viewMode === "category"
+                        ? "カテゴリ一覧"
+                        : "サブカテゴリ一覧"}
+                </h3>
 
                 {viewMode === "category" && (
                     <ul>
@@ -116,13 +118,10 @@ function WorkListMaster({ onBack }) {
                 )}
 
                 {viewMode === "subcategory" && (
-                    <ul>
-                        {subCategories
-                            .filter((sub) => sub.category_id === Number(selectedCategoryId))
-                            .map((sub) => (
-                                <li key={sub.id}>{sub.subcategory}</li>
-                            ))}
-                    </ul>
+                    <p>
+                        {categories.find(c => c.id === Number(selectedCategoryId))?.category}
+                        のサブカテゴリ一覧
+                    </p>
                 )}
 
             </div>
