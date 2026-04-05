@@ -88,8 +88,18 @@ function WorkListMaster({ onBack }) {
                 追加
             </button>
         </div>
+        
         <div className="master-right">
-            {!selectedCategoryId === ""  && (
+
+            {!selectedCategoryId && (
+                <ul>
+                    {categories.map(cat => (
+                        <li key={cat.id}>{cat.category}</li>
+                    ))}
+                </ul>
+            )}
+
+            {selectedCategoryId && (
                 <>
                     <p>
                         カテゴリ：
@@ -97,15 +107,15 @@ function WorkListMaster({ onBack }) {
                     </p>
 
                     <ul>
-                    {subCategories
-                        .filter((sub) => sub.category_id === Number(selectedCategoryId))
-                        .map((sub) => (
-                            <li key={sub.id}>{sub.subcategory}</li>
-                        ))}
+                        {subCategories
+                            .filter((sub) => sub.category_id === Number(selectedCategoryId))
+                            .map((sub) => (
+                                <li key={sub.id}>{sub.subcategory}</li>
+                            ))}
                     </ul>
                 </>
-            )}   
-        </div>
+            )}
+</div>
     </div>
     );
 
