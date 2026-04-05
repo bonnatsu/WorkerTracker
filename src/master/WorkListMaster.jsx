@@ -47,77 +47,83 @@ function WorkListMaster({ onBack }) {
         fetchData()
     };
 
-    return (
-    <div className="master-container">
-        <div className="master-left">
-            <h2>作業マスタ</h2>
-            <button onClick={onBack}>戻る</button>
+        return (
+        <div className="master-container">
 
-            <h3>カテゴリ追加</h3>
-            <input
-                value={newCategory}
-                onChange={(e) => setNewCategory(e.target.value)}
-                placeholder="カテゴリ名"
-            />
-            <button onClick={handleAddCategory}>追加</button>
-
-
-            <hr />
-
-        </div>
-
-        <div className="master-right">
+            {/* 左 */}
+            <div className="master-left">
 
             {viewMode === "category" && (
-                <ul>
-                    {categories.map(cat => (
-                        <li key={cat.id} className="category-item clickable">
-                            <button onClick={() => {
-                                setSelectedCategoryId(cat.id);
-                                setViewMode("subcategory");
-                            }}>
-                                {cat.category}
-                            </button>
-                            {cat.category}
-                        </li>
-                    ))}
-                </ul>
+                <>
+                <h2>作業マスタ</h2>
+                <button onClick={onBack}>戻る</button>
+
+                <h3>カテゴリ追加</h3>
+                <input
+                    value={newCategory}
+                    onChange={(e) => setNewCategory(e.target.value)}
+                    placeholder="カテゴリ名"
+                />
+                <button onClick={handleAddCategory}>追加</button>
+                </>
             )}
 
             {viewMode === "subcategory" && (
                 <>
-                    <p>
-                        カテゴリ：
-                        {categories.find(c => c.id === Number(selectedCategoryId))?.category}
-                    </p>
+                <p>
+                    カテゴリ：
+                    {categories.find(c => c.id === Number(selectedCategoryId))?.category}
+                </p>
 
-                    <ul>
-                        {subCategories
-                            .filter((sub) => sub.category_id === Number(selectedCategoryId))
-                            .map((sub) => (
-                                <li key={sub.id}>{sub.subcategory}</li>
-                            ))}
-                    </ul>
+                <input
+                    value={newSubCategory}
+                    onChange={(e) => setNewSubCategory(e.target.value)}
+                    placeholder="サブカテゴリ名"
+                />
+                <button onClick={() => handleAddSubCategory(selectedCategoryId)}>
+                    追加
+                </button>
 
-                    <input
-                        value={newSubCategory}
-                        onChange={(e) => setNewSubCategory(e.target.value)}
-                        placeholder="サブカテゴリ名"
-                    />
-                    <button onClick={() => handleAddSubCategory(selectedCategoryId)}>
-                        追加
-                    </button>
-
-                    <button onClick={() => setViewMode("category")}>
-                        ← 戻る
-                    </button>
-
+                <button onClick={() => setViewMode("category")}>
+                    ← 戻る
+                </button>
                 </>
             )}
-</div>
-    </div>
-    );
 
-}
+            </div>
+
+            {/* 右 */}
+            <div className="master-right">
+
+            {viewMode === "category" && (
+                <ul>
+                {categories.map(cat => (
+                    <li key={cat.id} className="category-item clickable">
+                    <button onClick={() => {
+                        setSelectedCategoryId(cat.id);
+                        setViewMode("subcategory");
+                    }}>
+                        {cat.category}
+                    </button>
+                    </li>
+                ))}
+                </ul>
+            )}
+
+            {viewMode === "subcategory" && (
+                <ul>
+                {subCategories
+                    .filter((sub) => sub.category_id === Number(selectedCategoryId))
+                    .map((sub) => (
+                    <li key={sub.id}>{sub.subcategory}</li>
+                    ))}
+                </ul>
+            )}
+
+            </div>
+
+        </div>
+        );
+    }
 
 export default WorkListMaster;
