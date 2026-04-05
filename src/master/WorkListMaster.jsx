@@ -89,13 +89,22 @@ function WorkListMaster({ onBack }) {
             </button>
         </div>
         <div className="master-right">
-            <h3>登録済みカテゴリ一覧</h3>
+            {!selectedCategoryId === ""  && (
+                <>
+                    <p>
+                        カテゴリ：
+                        {categories.find(c => c.id === Number(selectedCategoryId))?.category}
+                    </p>
 
-            {categories.map((cat) => (
-                <div key={cat.id} style={{ marginBottom:"10px"}}>
-                    <strong>{cat.category}</strong>
-                </div>
-            ))}
+                    <ul>
+                    {subCategories
+                        .filter((sub) => sub.category_id === Number(selectedCategoryId))
+                        .map((sub) => (
+                            <li key={sub.id}>{sub.subcategory}</li>
+                        ))}
+                    </ul>
+                </>
+            )}   
         </div>
     </div>
     );
