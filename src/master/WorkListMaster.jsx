@@ -80,14 +80,7 @@ function WorkListMaster({ onBack }) {
                 ))}
             </select>
 
-            <input
-                value={newSubCategory}
-                onChange={(e) => setNewSubCategory(e.target.value)}
-                placeholder="サブカテゴリ名"
-            />
-            <button onClick={() => handleAddSubCategory(selectedCategoryId)}>
-                追加
-            </button>
+
         </div>
 
         <div className="master-right">
@@ -97,8 +90,8 @@ function WorkListMaster({ onBack }) {
                     {categories.map(cat => (
                         <li key={cat.id}>
                             <button onClick={() => {
-                                selectedCategoryId(cat.id);
-                                setViewMode == "subcategory";
+                                setSelectedCategoryId(cat.id);
+                                setViewMode("subcategory");
                             }}>
                                 {cat.category}
                             </button>
@@ -123,9 +116,19 @@ function WorkListMaster({ onBack }) {
                             ))}
                     </ul>
 
+                    <input
+                        value={newSubCategory}
+                        onChange={(e) => setNewSubCategory(e.target.value)}
+                        placeholder="サブカテゴリ名"
+                    />
+                    <button onClick={() => handleAddSubCategory(selectedCategoryId)}>
+                        追加
+                    </button>
+
                     <button onClick={() => setViewMode("category")}>
                         ← 戻る
                     </button>
+
                 </>
             )}
 </div>
