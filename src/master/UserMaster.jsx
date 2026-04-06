@@ -4,7 +4,7 @@ import { supabase } from "../lib/supabase";
 
 function UsersMaster({ onBack }) {
     const [users, setUsers] = useState([]);
-    const [name, setName] = useState([]);
+    const [name, setName] = useState("");
 
     const fetchUsers = async () => {
         const { data, error } = await supabase.from("users").select("*");
@@ -38,6 +38,8 @@ function UsersMaster({ onBack }) {
 
         const data = await res.json();
         console.log(data);
+        await fetchUsers();
+        setName("")
 
     };
 
