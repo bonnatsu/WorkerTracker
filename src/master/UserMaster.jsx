@@ -22,12 +22,23 @@ function UsersMaster({ onBack }) {
     }, []);
 
     const handleAdd = async () => {
-        const { error } = await supabase.from("users").insert([{ name }]);
-
-        if (!error) {
-            setName("");
-            fetchUsers();
+        if (!name) {
+            alert("必須項目です");
+            return;
         }
+
+        const res = await fetch("/api/users", {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json",
+            },
+            body: JSON.stringify({ name }),
+        });
+
+
+        const data = await res.json();
+        console.log(data);
+
     };
 
     const handleDelete = async (id) => {
