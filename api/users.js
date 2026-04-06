@@ -21,8 +21,8 @@ export default async function handler(req, res) {
 
 
 
-        console.log("URL:", process.env.supabaseUrl);
-        console.log("KEY:", process.env.supabaseKey);
+        console.log("URL:", process.env.SUPABASE_URL);
+        console.log("KEY:", process.env.SUPABASE_SERVICE_ROLE_KEY);
 
         if (error) {
             return res.status(500).json({ error: error.message });
