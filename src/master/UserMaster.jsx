@@ -15,7 +15,7 @@ function UsersMaster({ onBack }) {
         }
 
         const data = res.json();
-        setUsers(data);
+        setUsers(data)
     };
 
 
@@ -46,8 +46,24 @@ function UsersMaster({ onBack }) {
     };
 
     const handleDelete = async (id) => {
-        await supabase.from("users").delete().eq("id", id);
-        fetchUsers();
+
+        if (!id) {
+            alert("IDが指定されていません");
+            return
+        }
+
+        const res = await fetch("/api/${id}", {
+            method: "DELETE",
+        });
+
+        if (!res.ok) {
+            const err = await res.json();
+            console.error(err);
+            alert("削除失敗");
+            return;
+        }
+
+        await fetchUsers();
     };
 
 

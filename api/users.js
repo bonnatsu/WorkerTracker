@@ -28,13 +28,13 @@ export default async function handler(req, res) {
             return res.status(500).json({ error: error.message });
         }
 
-        res.status(200).json({ message: "登録成功", data });
+        res.status(200).json({ data });
     }
 
-    if (req.method === "GET") {
+    else if (req.method === "GET") {
         const { data, error } = await supabase
             .from("users")
-            .select("*")
+            .select("id,name")
 
         if (error) {
             return res.status(500).json({ error: error.message });
@@ -42,5 +42,7 @@ export default async function handler(req, res) {
 
         return res.status(200).json(data);
     }
+
+
 
 }
