@@ -52,7 +52,7 @@ function UsersMaster({ onBack }) {
             return
         }
 
-        const res = await fetch('/api/${id}', {
+        const res = await fetch(`/api/${id}`, {
             method: "DELETE",
         });
 
