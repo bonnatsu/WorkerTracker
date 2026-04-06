@@ -7,13 +7,15 @@ function UsersMaster({ onBack }) {
     const [name, setName] = useState("");
 
     const fetchUsers = async () => {
-        const { data, error } = await supabase.from("users").select("*");
+        const res = await fetch("/api/users");
 
-        if (error) {
+        if (!res.ok) {
+            const err = await res.json();
             console.error(error);
-        } else {
-            setUsers(data);
         }
+
+        const data = res.json();
+        setUsers(data);
     };
 
 
