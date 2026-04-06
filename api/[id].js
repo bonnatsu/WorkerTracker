@@ -8,7 +8,7 @@ export default async function handler(req, res) {
         process.env.SUPABASE_SERVICE_ROLE_KEY
     );
 
-    const { id } = req.body;
+    const { id } = req.query;
 
     if (req.method === "DELETE") {
 
@@ -17,7 +17,7 @@ export default async function handler(req, res) {
             return;
         }
 
-        const { error } = supabase
+        const { error } = await supabase
             .from("users")
             .update({is_deleted:true})
             .eq("id",id);
