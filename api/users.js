@@ -1,7 +1,7 @@
 import { createClient } from "@supabase/supabase-js";
 const supabase = createClient(
     process.env.supabaseUrl,
-    process.env.supabaseKey 
+    process.env.supabaseKey
 );
 
 export default async function handler(req, res) {
@@ -18,6 +18,11 @@ export default async function handler(req, res) {
         const { data, error } = await supabase
             .from("users")
             .insert([{ name }])
+
+
+
+        console.log("URL:", process.env.supabaseUrl);
+        console.log("KEY:", process.env.supabaseKey);
 
         if (error) {
             return res.status(500).json({ error: error.message });
