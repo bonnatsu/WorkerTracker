@@ -19,7 +19,7 @@ export default async function handler(req, res) {
 
         const { error } = supabase
             .from("users")
-            .delete()
+            .update({is_deleted:true})
             .eq("id",id);
 
         if (error) {
