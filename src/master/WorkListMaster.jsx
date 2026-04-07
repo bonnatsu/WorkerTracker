@@ -13,8 +13,10 @@ function WorkListMaster({ onBack }) {
 
 
     const fetchData = async () => {
-        const { data: catData, error: catError } = await supabase.from("categories").select("*");
-        const { data: subData, error: subError } = await supabase.from("subcategories").select("*");
+        const catres = fetch("/api/category");
+        catData = await catres.json();
+        const subres = fetch("api/subcategory");
+        subData = await subres.json();
 
         if (catError) {
             console.error(catError);

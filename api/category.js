@@ -8,7 +8,7 @@ export default async function handler(req, res) {
     );
 
     if (req.method === "POST") {
-        const { name} = req.body;
+        const { name } = req.body;
 
         //apiバリデーション
         if (!name) {
@@ -27,6 +27,19 @@ export default async function handler(req, res) {
             return res.status(500).json({ error: error.message });
         }
 
-        res.status(200).json( data );
+        res.status(200).json(data);
+    }
+
+    else if (req.method === "GET") {
+        const { data, error } = await supabase
+            .from("categories")
+            .select("id,category")
+
+        if (error) {
+            return res.status(500).json({ error: error.message });
+        }
+
+        return res.status(200).json({ data })
+
     }
 }
