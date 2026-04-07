@@ -33,15 +33,15 @@ export default async function handler(req, res) {
 
         res.status(200).json(data);
     } else if (req.method === "GET") {
-            const {data,error} = await supabase
-                .from("subcategories")
-                .select("subcategory,category_id")
-    }
-    if (error) {
-        return res.status(500).json({error:error.message});
-    }
-    return res.status(200).json(data)
+        const { data, error } = await supabase
+            .from("subcategories")
+            .select("subcategory,category_id")
 
+        if (error) {
+            return res.status(500).json({ error: error.message });
+        }
+        return res.status(200).json(data)
 
+    }
 
 }
