@@ -76,6 +76,7 @@ function WorkListMaster({ onBack }) {
         }
 
         await fetchData()
+        setSubCategories("")
     };
 
     return (
