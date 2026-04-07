@@ -8,13 +8,12 @@ function UsersMaster({ onBack }) {
 
     const fetchUsers = async () => {
         const res = await fetch("/api/users");
-
+        const data = await res.json();
         if (!res.ok) {
-            const err = await res.json();
-            console.error(error);
+            console.error(data);
         }
 
-        const data = await res.json();
+
         setUsers(data)
     };
 

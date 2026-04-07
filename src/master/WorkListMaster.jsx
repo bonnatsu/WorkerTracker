@@ -47,13 +47,13 @@ function WorkListMaster({ onBack }) {
 
     const handleAddSubCategory = async (categoryId) => {
         const res = fetch("/api/subcategory");
+        const data = await res.json();
 
         if(!res.ok) {
-            const error = await res.json();
-            console.error(error)
+            console.error(data);
         }
 
-        const data = res.json();
+
         setCategories(data);
         setNewSubCategory("");
         fetchData()
