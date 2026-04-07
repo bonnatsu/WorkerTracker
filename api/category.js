@@ -8,16 +8,20 @@ export default async function handler(req, res) {
     );
 
     if (req.method === "POST") {
-        const { name } = req.body;
+        const { name} = req.body;
 
         //apiバリデーション
         if (!name) {
-            return res.status(400).json({ error: カテゴリ名が入力されていません });
+            return res.status(400).json({ error: "カテゴリ名が入力されていません" });
         }
+
 
         const { data, error } = await supabase
             .from("categories")
-            .insert([{ name }])
+            .insert([{
+                category: name,
+            },
+            ]);
 
         if (error) {
             return res.status(500).json({ error: error.message });

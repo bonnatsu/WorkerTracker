@@ -46,13 +46,15 @@ function WorkListMaster({ onBack }) {
 
 
     const handleAddSubCategory = async (categoryId) => {
-        await supabase.from("subcategories")
-            .insert([
-                {
-                    subcategory: newSubCategory,
-                    category_id: Number(categoryId)
-                },
-            ]);
+        const res = fetch("/api/subcategory");
+
+        if(!res.ok) {
+            const error = await res.json();
+            console.error(error)
+        }
+
+        const data = res.json();
+        setCategories(data);
         setNewSubCategory("");
         fetchData()
     };
