@@ -13,11 +13,22 @@ function WorkListMaster({ onBack }) {
 
 
     const fetchData = async () => {
-        const { data: catData } = await supabase.from("categories").select("*");
-        const { data: subData } = await supabase.from("subcategories").select("*");
+        const { data: catData, error: catError } = await supabase.from("categories").select("*");
+        const { data: subData, error: subError } = await supabase.from("subcategories").select("*");
 
-        setCategories(catData || []);
-        setSubCategories(subData || []);
+        if (catError) {
+            console.error(catError);
+            setCategories([]);
+        } else {
+            setCategories(catData || []);
+        }
+
+        if (subError) {
+            console.error(subError);
+            setSubCategories([]);
+        } else {
+            setSubCategories(subData || []);
+        }
     };
     useEffect(() => {
         fetchData();
@@ -49,13 +60,13 @@ function WorkListMaster({ onBack }) {
 
     const handleAddSubCategory = async (categoryId) => {
         const res = await fetch("/api/subcategory", {
-            method:"POST",
+            method: "POST",
             headers: {
-                "Content-type":"application/json",
+                "Content-type": "application/json",
             },
-            body:JSON.stringify({
-                name:newSubCategory,
-                categoryId:selectedCategoryId
+            body: JSON.stringify({
+                name: newSubCategory,
+                categoryId: selectedCategoryId
             })
         });
         const data = await res.json();
