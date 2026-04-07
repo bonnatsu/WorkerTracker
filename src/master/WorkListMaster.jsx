@@ -75,9 +75,6 @@ function WorkListMaster({ onBack }) {
             console.error(data);
         }
 
-
-        setSubCategories(data);
-        setNewSubCategory("");
         await fetchData()
     };
 
