@@ -24,8 +24,8 @@ function WorkListMaster({ onBack }) {
     }, []);
 
     const handleAddCategory = async (categoryId) => {
-        if (!categoryId) {
-            alert("カテゴリを選択してください");
+        if (!newCategory) {
+            alert("カテゴリを入力してください");
             return;
         }
 
@@ -65,9 +65,9 @@ function WorkListMaster({ onBack }) {
         }
 
 
-        setCategories(data);
+        setSubCategories(data);
         setNewSubCategory("");
-        fetchData()
+        await fetchData()
     };
 
     return (
