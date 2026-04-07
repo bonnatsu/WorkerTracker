@@ -29,9 +29,19 @@ function WorkListMaster({ onBack }) {
             return;
         }
 
-        await supabase.from("categories").insert([{ category: newCategory }]);
-        setNewCategory("");
-        fetchData()
+        const res = fetch("/api/category", {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json",
+            },
+            body: JSON.stringify(categoryId),
+        });
+
+        const data = await res.json();
+        console.log(data);
+        alert("登録完了");
+        await fetchData();
+
     };
 
 
@@ -82,8 +92,8 @@ function WorkListMaster({ onBack }) {
                             onChange={(e) => setNewSubCategory(e.target.value)}
                             placeholder="サブカテゴリ名"
                         />
-                        <button onClick={  () => {
-                             handleAddSubCategory(selectedCategoryId);
+                        <button onClick={() => {
+                            handleAddSubCategory(selectedCategoryId);
                         }}>
                             追加
                         </button>
