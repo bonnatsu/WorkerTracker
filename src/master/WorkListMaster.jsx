@@ -23,7 +23,7 @@ function WorkListMaster({ onBack }) {
         fetchData();
     }, []);
 
-    const handleAddCategory = async (categoryId) => {
+    const handleAddCategory = async () => {
         if (!newCategory) {
             alert("カテゴリを入力してください");
             return;
