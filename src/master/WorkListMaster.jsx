@@ -35,7 +35,7 @@ function WorkListMaster({ onBack }) {
                 "Content-type": "application/json",
             },
             body: JSON.stringify({
-                name: newCategory,   // ← ここも重要
+                name: newCategory,
             }),
         });
 
@@ -48,7 +48,16 @@ function WorkListMaster({ onBack }) {
 
 
     const handleAddSubCategory = async (categoryId) => {
-        const res = fetch("/api/subcategory");
+        const res = await fetch("/api/subcategory", {
+            method:"POST",
+            headers: {
+                "Content-type":"application/json",
+            },
+            body:JSON.stringify({
+                name:newSubCategory,
+                categoryId:selectedCategoryId
+            })
+        });
         const data = await res.json();
 
         if (!res.ok) {
