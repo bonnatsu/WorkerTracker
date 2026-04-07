@@ -13,25 +13,33 @@ function WorkListMaster({ onBack }) {
 
 
     const fetchData = async () => {
-        const catres = await fetch("/api/category");
-        const catData = await catres.json();
-        const subres = await fetch("/api/subcategory");
-        const subData = await subres.json();
+        const [catres, subres] = await Promise.all([
+            fetch("/api/category"),
+            fetch("/api/subcategory")
+        ]);
+
+        const [catData, subData] = await Promise.all([
+            catres.json(),
+            subres.json()
+        ]);
 
         if (!catres.ok) {
-            console.error(catError);
+            console.error(catData);
             setCategories([]);
         } else {
             setCategories(catData || []);
         }
 
         if (!subres.ok) {
-            console.error(subError);
+            console.error(subData);
             setSubCategories([]);
         } else {
             setSubCategories(subData || []);
         }
     };
+
+
+
     useEffect(() => {
         fetchData();
     }, []);
