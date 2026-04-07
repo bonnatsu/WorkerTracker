@@ -13,19 +13,19 @@ function WorkListMaster({ onBack }) {
 
 
     const fetchData = async () => {
-        const catres = fetch("/api/category");
-        catData = await catres.json();
-        const subres = fetch("api/subcategory");
-        subData = await subres.json();
+        const catres = await fetch("/api/category");
+        const catData = await catres.json();
+        const subres = await fetch("/api/subcategory");
+        const subData = await subres.json();
 
-        if (catError) {
+        if (!catres.ok) {
             console.error(catError);
             setCategories([]);
         } else {
             setCategories(catData || []);
         }
 
-        if (subError) {
+        if (!subres.ok) {
             console.error(subError);
             setSubCategories([]);
         } else {
