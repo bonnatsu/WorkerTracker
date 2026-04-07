@@ -29,12 +29,14 @@ function WorkListMaster({ onBack }) {
             return;
         }
 
-        const res = fetch("/api/category", {
+        const res = await fetch("/api/category", {
             method: "POST",
             headers: {
                 "Content-type": "application/json",
             },
-            body: JSON.stringify(categoryId),
+            body: JSON.stringify({
+                name: newCategory,   // ← ここも重要
+            }),
         });
 
         const data = await res.json();
@@ -49,7 +51,7 @@ function WorkListMaster({ onBack }) {
         const res = fetch("/api/subcategory");
         const data = await res.json();
 
-        if(!res.ok) {
+        if (!res.ok) {
             console.error(data);
         }
 
