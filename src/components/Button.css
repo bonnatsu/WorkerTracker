@@ -10,7 +10,35 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    /* 見た目 */
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-weight: 600;
+    color: #333;
+
+    /* 動き */
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    /* テキスト制御 */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+
+    /* 影 */
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.grid button:hover {
+    background: #f1f3ff;
+    border-color: #3742fa;
+    color: #3742fa;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+.grid button:active {
+    transform: scale(0.98);
 }
