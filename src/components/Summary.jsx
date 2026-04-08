@@ -42,7 +42,7 @@ function Summary({ onBack }) {
   }, {});
 
   return (
-    <div className="summary">
+    <div>
       <button onClick={onBack}>戻る</button>
 
       {Object.entries(grouped).map(([date, items]) => {

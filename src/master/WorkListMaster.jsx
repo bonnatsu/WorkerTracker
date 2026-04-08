@@ -90,7 +90,7 @@ function WorkListMaster({ onBack }) {
 
     return (
 
-        <div className="master-container">
+        <div>
 
             <div className="master-left">
 
