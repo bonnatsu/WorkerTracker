@@ -300,24 +300,30 @@ function WorkTracker() {
         )}
 
         {mode === "main" && selectedCategory && !selectedSubCategory && (
-          <div className="grid">
-            {worklist[selectedCategory].map((sub) => (
-              <button
-                key={sub}
-                onClick={() => setSelectedSubCategory(sub)}
-              >
-                {sub}
-              </button>
-            ))}
+          <>
+            <div className="grid">
+              {worklist[selectedCategory].map((sub) => (
+                <button
+                  key={sub}
+                  onClick={() => setSelectedSubCategory(sub)}
+                >
+                  {sub}
+                </button>
+              ))}
 
-            <button onClick={() => {
-              setSelectedCategory(null);
-              setSelectedSubCategory(null);
-              SetEmployeeId("");
-            }}>
-              ← 戻る
-            </button>
-          </div>
+
+            </div>
+
+            <div className="back-area">
+              <button onClick={() => {
+                setSelectedCategory(null);
+                setSelectedSubCategory(null);
+                SetEmployeeId("");
+              }}>
+                ← 戻る
+              </button>
+            </div>
+          </>
         )}
 
         {mode === "main" && selectedSubCategory && (
