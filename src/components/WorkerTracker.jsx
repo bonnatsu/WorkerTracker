@@ -309,6 +309,14 @@ function WorkTracker() {
                 {sub}
               </button>
             ))}
+
+            <button onClick={() => {
+              setSelectedCategory(null);
+              setSelectedSubCategory(null);
+              SetEmployeeId("");
+            }}>
+              ← 戻る
+            </button>
           </div>
         )}
 
