@@ -95,7 +95,7 @@ function WorkListMaster({ onBack }) {
 
             <div className="master-left">
 
-                {mode === "main" && viewMode === "category" && (
+                {viewMode === "category" && (
                     <>
                         <h2>作業マスタ</h2>
                         <button onClick={onBack}>戻る</button>
@@ -110,7 +110,7 @@ function WorkListMaster({ onBack }) {
                     </>
                 )}
 
-                {mode === "main" && viewMode === "subcategory" && (
+                {viewMode === "subcategory" && (
                     <>
                         <p>
                             サブカテゴリ追加
