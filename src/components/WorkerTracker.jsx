@@ -189,6 +189,13 @@ function WorkTracker() {
       return;
     }
 
+    const result = window.confirm("作業終了しますか？");
+    if (!result) {
+        alert("処理を中断します")
+        return
+    } else {
+
+
     SetEmployeeName(user.name);
     setShowModal(true); // OKならモーダル出す
   };
@@ -217,7 +224,7 @@ function WorkTracker() {
       setMode("main");
       fetchActiveWorks()
     }
-  };
+  }};
 
 
 
