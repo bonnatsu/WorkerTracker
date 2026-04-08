@@ -247,7 +247,7 @@ function WorkTracker() {
           </div>
         )}
 
-        {!selectedCategory && (
+        {mode === "main" && !selectedCategory && (
           <>
             <div>
               <h3>カテゴリ選択</h3>
