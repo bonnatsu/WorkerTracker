@@ -303,7 +303,7 @@ function WorkTracker() {
           </div>
         )}
 
-        {selectedCategory && !selectedSubCategory && (
+        {mode === "main" && selectedCategory && !selectedSubCategory && (
           <div className="grid">
             {worklist[selectedCategory].map((sub) => (
               <button
@@ -316,7 +316,7 @@ function WorkTracker() {
           </div>
         )}
 
-        {selectedSubCategory && (
+        {mode === "main" && selectedSubCategory && (
           <div className="input-area">
             <input
               placeholder="社員IDを入力してください"
