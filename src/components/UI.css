@@ -59,7 +59,7 @@
 }
 
 .input-area input {
-    flex: 1;              /* ←これが本命 */
+    width: 300px;              /* ←これが本命 */
     height: 40px;
     padding: 0 12px;
 
