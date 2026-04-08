@@ -55,13 +55,17 @@
     gap: 16px;
     align-items: center;
     margin-top: 32px;
-    width: 50px;
-    height: 20px;
+    width: 100%;          /* ←広げる */
 }
 
 .input-area input {
-    margin-bottom: 16px;
+    flex: 1;              /* ←これが本命 */
+    height: 40px;
+    padding: 0 12px;
+
     font-weight: bold;
+    border: 1px solid #ddd;
+    border-radius: 8px;
 }
 
 
