@@ -149,7 +149,7 @@ function WorkListMaster({ onBack }) {
                 {viewMode === "category" && (
                     <ul>
                         {categories.map(cat => (
-                            <li key={cat.id} className="category-item clickable">
+                            <li key={cat.id} className="category-item">
                                 <button onClick={() => {
                                     setSelectedCategoryId(cat.id);
                                     setViewMode("subcategory");
