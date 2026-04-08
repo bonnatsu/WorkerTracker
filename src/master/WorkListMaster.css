@@ -1,7 +1,6 @@
 .master-container {
     display: flex;
     gap: 40px;
-    align-items: flex-start;
     width: 100%;
 }
 
