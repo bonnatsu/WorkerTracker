@@ -189,11 +189,7 @@ function WorkTracker() {
       return;
     }
 
-    const result = window.confirm("作業終了しますか？");
-    if (!result) {
-        alert("処理を中断します")
-        return
-    } else {
+
 
 
     SetEmployeeName(user.name);
@@ -206,25 +202,32 @@ function WorkTracker() {
       return;
     }
 
-    const now = new Date();
-
-    const { error } = await supabase
-      .from("worktracker")
-      .update({ end_time: now })
-      .eq("employee_id", Number(employeeId))
-      .is("end_time", null);
-
-    if (error) {
-      console.error(error);
-      alert("終了失敗");
+    const result = window.confirm("作業終了しますか？");
+    if (!result) {
+      alert("処理を中断します")
+      return
     } else {
-      alert("作業終了したで");
-      SetEmployeeId("");
-      SetEmployeeName("")
-      setMode("main");
-      fetchActiveWorks()
+
+      const now = new Date();
+
+      const { error } = await supabase
+        .from("worktracker")
+        .update({ end_time: now })
+        .eq("employee_id", Number(employeeId))
+        .is("end_time", null);
+
+      if (error) {
+        console.error(error);
+        alert("終了失敗");
+      } else {
+        alert("作業終了したで");
+        SetEmployeeId("");
+        SetEmployeeName("")
+        setMode("main");
+        fetchActiveWorks()
+      }
     }
-  }};
+  };
 
 
 
