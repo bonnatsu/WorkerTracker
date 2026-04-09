@@ -67,39 +67,41 @@ function Summary({ onBack }) {
 
   const convertToCsv = (data) => {
     if (!data.length) return "";
+    let headers = [];
+    let rows = [];
 
     if (mode === "summary") {
-    const headers = [
-      "日付",
-      "カテゴリ",
-      "サブカテゴリ",
-      "作業時間(分)"
-    ];
+      headers = [
+        "日付",
+        "カテゴリ",
+        "サブカテゴリ",
+        "作業時間(分)"
+      ];
 
-    const rows = data.map(item => [
-      item.work_date,
-      item.category,
-      item.subcategory,
-      item.total_time
-    ]);
+      ows = data.map(item => [
+        item.work_date,
+        item.category,
+        item.subcategory,
+        item.total_time
+      ]);
     } else if (mode === "summaryUser") {
-    const headers = [
-      "日付",
-      "ユーザID",
-      "ユーザ名",
-      "カテゴリ",
-      "サブカテゴリ",
-      "作業時間(分)"
-    ];
+      headers = [
+        "日付",
+        "ユーザID",
+        "ユーザ名",
+        "カテゴリ",
+        "サブカテゴリ",
+        "作業時間(分)"
+      ];
 
-    const rows = data.map(item => [
-      item.work_date,
-      item.employee_id,
-      item.employee_name,
-      item.category,
-      item.subcategory,
-      item.total_time
-    ]);
+      rows = data.map(item => [
+        item.work_date,
+        item.employee_id,
+        item.employee_name,
+        item.category,
+        item.subcategory,
+        item.total_time
+      ]);
     }
 
     return [
