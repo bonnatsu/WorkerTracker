@@ -89,7 +89,7 @@ function Summary({ onBack }) {
       <button onClick={onBack}>戻る</button>
 
       {Object.entries(grouped).map(([date, items]) => {
-        const total = items.reduce((sum, i) => sum + i.work_hours, 0);
+        const total = items.reduce((sum, i) => sum + i.total_time, 0);
 
         return (
           <div key={formatDateJST(date)} className="summary-day">
