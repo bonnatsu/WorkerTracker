@@ -19,6 +19,7 @@ function Summary({ onBack }) {
   const [summary, setSummary] = useState([]);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [mode, setMode] = useState("")
 
   const fetchSummary = async () => {
     if (!startDate || !endDate) return;
@@ -37,7 +38,7 @@ function Summary({ onBack }) {
     }
   };
 
-    const fetchSummaryUser = async () => {
+  const fetchSummaryUser = async () => {
     if (!startDate || !endDate) return;
     const { data, error } = await supabase.rpc(
       "get_work_summary_users",
@@ -67,6 +68,7 @@ function Summary({ onBack }) {
   const convertToCsv = (data) => {
     if (!data.length) return "";
 
+    if (mode === "summary") {
     const headers = [
       "日付",
       "カテゴリ",
@@ -80,6 +82,25 @@ function Summary({ onBack }) {
       item.subcategory,
       item.total_time
     ]);
+    } else if (mode === "summaryUser") {
+    const headers = [
+      "日付",
+      "ユーザID",
+      "ユーザ名",
+      "カテゴリ",
+      "サブカテゴリ",
+      "作業時間(分)"
+    ];
+
+    const rows = data.map(item => [
+      item.work_date,
+      item.employee_id,
+      item.employee_name,
+      item.category,
+      item.subcategory,
+      item.total_time
+    ]);
+    }
 
     return [
       headers.join(","),
@@ -94,7 +115,7 @@ function Summary({ onBack }) {
 
     const blob = new Blob(
       ["\uFEFF" + csv], //excelの文字化け防止
-      {type:"text/csv;charset=utf-8"}
+      { type: "text/csv;charset=utf-8" }
     );
 
     const url = URL.createObjectURL(blob);
@@ -122,11 +143,17 @@ function Summary({ onBack }) {
         onChange={(e) => setEndDate(e.target.value)}
       />
 
-      <button onClick={fetchSummary}>
+      <button onClick={() => {
+        fetchSummary();
+        setMode("summary");
+      }}>
         集計
       </button>
 
-      <button onClick={fetchSummary}>
+      <button onClick={() => {
+        fetchSummaryUser();
+        setMode("summaryUser");
+      }}>
         ユーザごと集計
       </button>
 
