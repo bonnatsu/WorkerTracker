@@ -21,7 +21,7 @@ function Summary({ onBack }) {
   const [endDate, setEndDate] = useState("");
 
   const fetchSummary = async () => {
-    if (!startDate || endDate) return;
+    if (!startDate || !endDate) return;
     const { data, error } = await supabase.rpc(
       "get_work_summary",
       {
@@ -38,7 +38,7 @@ function Summary({ onBack }) {
   };
 
     const fetchSummaryUser = async () => {
-    if (!startDate || endDate) return;
+    if (!startDate || !endDate) return;
     const { data, error } = await supabase.rpc(
       "get_work_summary_users",
       {
