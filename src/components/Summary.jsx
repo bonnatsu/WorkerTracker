@@ -100,7 +100,7 @@ function Summary({ onBack }) {
                 <span>
                   {item.category} - {item.subcategory}
                 </span>
-                <span>{item.work_hours.toFixed(1)}h</span>
+                <span>{item.total_time.toFixed(1)}h</span>
               </div>
             ))}
           </div>
