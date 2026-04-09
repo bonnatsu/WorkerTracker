@@ -37,6 +37,22 @@ function Summary({ onBack }) {
     }
   };
 
+    const fetchSummaryUser = async () => {
+    if (!startDate || endDate) return;
+    const { data, error } = await supabase.rpc(
+      "get_work_summary_users",
+      {
+        start_date: startDate,
+        end_date: endDate
+      }
+    );
+
+    if (error) {
+      console.error(error);
+    } else {
+      setSummary(data);
+    }
+  };
 
 
   const grouped = summary.reduce((acc, item) => {
@@ -60,6 +76,15 @@ function Summary({ onBack }) {
         value={endDate}
         onChange={(e) => setEndDate(e.target.value)}
       />
+
+      <button onClick={fetchSummary}>
+        集計
+      </button>
+
+      <button onClick={fetchSummary}>
+        ユーザごと集計
+      </button>
+
 
       <button onClick={onBack}>戻る</button>
 
