@@ -63,6 +63,51 @@ function Summary({ onBack }) {
     return acc;
   }, {});
 
+
+  const convertToCsv = (data) => {
+    if (!data.length) return "";
+
+    const headers = [
+      "日付",
+      "カテゴリ",
+      "サブカテゴリ",
+      "作業時間(分)"
+    ];
+
+    const rows = data.map(item => [
+      item.work_date,
+      item.category,
+      item.subcategory,
+      item.total_time
+    ]);
+
+    return [
+      headers.join(","),
+      ...rows.map(r => r.join(","))
+    ].join("\n");
+  };
+
+  const downloadCSV = () => {
+    if (!summary.length) return;
+
+    const csv = convertToCsv(summary);
+
+    const blob = new Blob(
+      ["\uFEFF" + csv], //excelの文字化け防止
+      {type:"text/csv;charset=utf-8"}
+    );
+
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `summary_${startDate}_${endDate}.csv`;
+    link.click();
+
+
+    URL.revokeObjectURL(url);
+  };
+
   return (
     <div>
       <input
@@ -83,6 +128,10 @@ function Summary({ onBack }) {
 
       <button onClick={fetchSummary}>
         ユーザごと集計
+      </button>
+
+      <button onClick={downloadCSV}>
+        CSV出力
       </button>
 
 
