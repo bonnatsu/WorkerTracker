@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "../lib/supabase";
 import "../App.css";
 
-const [startDate,setStartDate] = useState("");
-const [endDate,setEndDate] = useState("");
+
 
 
 const formatDateJST = (date) => {
@@ -18,12 +17,18 @@ const formatDateJST = (date) => {
 
 function Summary({ onBack }) {
   const [summary, setSummary] = useState([]);
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
 
   const fetchSummary = async () => {
-    const { data, error } = await supabase
-      .from("work_summary")
-      .select("*")
-      .order("work_date", { ascending: false });
+    if (!startDate || endDate) return;
+    const { data, error } = await supabase.rpc(
+      "get_work_summary",
+      {
+        start_date: startDate,
+        end_date: endDate
+      }
+    );
 
     if (error) {
       console.error(error);
@@ -32,9 +37,7 @@ function Summary({ onBack }) {
     }
   };
 
-  useEffect(() => {
-    fetchSummary();
-  }, []);
+
 
   const grouped = summary.reduce((acc, item) => {
     if (!acc[item.work_date]) {
@@ -57,7 +60,7 @@ function Summary({ onBack }) {
         value={endDate}
         onChange={(e) => setEndDate(e.target.value)}
       />
-      
+
       <button onClick={onBack}>戻る</button>
 
       {Object.entries(grouped).map(([date, items]) => {
