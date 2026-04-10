@@ -124,7 +124,7 @@ function Summary({ onBack }) {
     const link = document.createElement("a");
     const now = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
     link.href = url;
-    link.download = `${mode}_${startDate}_${endDate}_${now()}.csv`;
+    link.download = `${mode}_${startDate}_${endDate}_${now}.csv`;
     link.click();
 
 
