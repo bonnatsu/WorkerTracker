@@ -187,7 +187,7 @@ function Summary({ onBack }) {
                     : `${item.category} - ${item.subcategory}`
                   }
                 </span>
-                <span>{item.total_time.toFixed(1)}h</span>
+                <span>{(item.total_time / 60).toFixed(1)}h</span>
               </div>
             ))}
           </div>
