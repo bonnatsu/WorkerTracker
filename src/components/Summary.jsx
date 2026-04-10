@@ -120,10 +120,9 @@ function Summary({ onBack }) {
       ["\uFEFF" + csv], //excelの文字化け防止
       { type: "text/csv;charset=utf-8" }
     );
-
     const url = URL.createObjectURL(blob);
-
     const link = document.createElement("a");
+    const now = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
     link.href = url;
     link.download = `summary_${startDate}_${endDate}_${now()}.csv`;
     link.click();
