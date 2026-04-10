@@ -125,7 +125,7 @@ function Summary({ onBack }) {
 
     const link = document.createElement("a");
     link.href = url;
-    link.download = `summary_${startDate}_${endDate}_${d}.csv`;
+    link.download = `summary_${startDate}_${endDate}_${now()}.csv`;
     link.click();
 
 
