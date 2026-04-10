@@ -176,7 +176,10 @@ function Summary({ onBack }) {
             {items.map((item, index) => (
               <div key={index} className="summary-row">
                 <span>
-                  {item.category} - {item.subcategory}
+                  {mode === "summaryUser"
+                    ? `${item.employee_name} (${item.employee_id}) - ${item.category} -${item.subcategory}`
+                    : `${item.category} - ${item.subcategory}`
+                  }
                 </span>
                 <span>{item.total_time.toFixed(1)}h</span>
               </div>
