@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+
 import { supabase } from "../lib/supabase";
 import "../App.css";
 
@@ -124,7 +124,7 @@ function Summary({ onBack }) {
 
     const link = document.createElement("a");
     link.href = url;
-    link.download = `summary_${startDate}_${endDate}.csv`;
+    link.download = `summary_${startDate}_${endDate}_${d}.csv`;
     link.click();
 
 
