@@ -78,7 +78,7 @@ function Summary({ onBack }) {
         "作業時間(分)"
       ];
 
-      ows = data.map(item => [
+      rows = data.map(item => [
         item.work_date,
         item.category,
         item.subcategory,
