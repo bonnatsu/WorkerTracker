@@ -224,7 +224,7 @@ function WorkTracker() {
     }
 
     const result = window.confirm(
-      `${user.id}: ${user.name}の作業(${selectedCategory} > ${selectedSubCategory})を作業終了しますか？`);
+      `${user.id}: ${user.name}の作業(${open.category} > ${open.subcategory})を作業終了しますか？`);
     if (!result) {
       alert("処理を中断します")
       return
