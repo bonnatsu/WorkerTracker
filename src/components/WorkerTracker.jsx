@@ -23,7 +23,7 @@ function WorkTracker() {
   const [selectedSubCategory, setSelectedSubCategory] = useState(null);
   const [showModal, setShowModal] = useState(null);
   const [activeWorks, setActiveWorks] = useState([]);
-  const {withAdmin} = useAdmin();
+  const { withAdmin } = useAdmin();
 
   //UTCをJSTに変換
   const formatJST = (date) =>
@@ -203,7 +203,8 @@ function WorkTracker() {
       return;
     }
 
-    const result = window.confirm("作業終了しますか？");
+    const result = window.confirm(
+      `${employeeId}: ${employeeName}の作業(${selectedCategory} > ${selectedSubCategory})を作業終了しますか？`);
     if (!result) {
       alert("処理を中断します")
       return
@@ -237,7 +238,7 @@ function WorkTracker() {
       <h2>作業時間管理</h2>
 
       <div className="side">
-        <button onClick={withAdmin(() => setMode("end"))}>作業終了</button>
+        <button onClick={setMode("end")}>作業終了</button>
         <button onClick={withAdmin(handleAllEnd)}>一括終了</button>
         <button onClick={withAdmin(() => setMode("master"))}>社員マスタ</button>
         <button onClick={withAdmin(() => setMode("worklistmaster"))}>作業マスタ</button>
