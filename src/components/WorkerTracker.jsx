@@ -209,6 +209,20 @@ function WorkTracker() {
       return;
     }
 
+    const { data: openRecords } = await supabase
+      .from("worktracker")
+      .select("*")
+      .eq("employee_id", Number(employeeId))
+      .is("end_time", null)
+      .limit(1);
+
+    const open = openRecords?.[0];
+
+    if (!open) {
+      alert("作業中データないで");
+      return;
+    }
+
     const result = window.confirm(
       `${user.id}: ${user.name}の作業(${selectedCategory} > ${selectedSubCategory})を作業終了しますか？`);
     if (!result) {
