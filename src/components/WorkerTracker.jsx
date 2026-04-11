@@ -204,11 +204,13 @@ function WorkTracker() {
     }
 
     const user = await fetchUsers(employeeId);
-    SetEmployeeId(user.id);
-    SetEmployeeName(user.name);
+    if (!user) {
+      alert("存在しないユーザです");
+      return;
+    }
 
     const result = window.confirm(
-      `${employeeId}: ${employeeName}の作業(${selectedCategory} > ${selectedSubCategory})を作業終了しますか？`);
+      `${user.id}: ${user.name}の作業(${selectedCategory} > ${selectedSubCategory})を作業終了しますか？`);
     if (!result) {
       alert("処理を中断します")
       return
