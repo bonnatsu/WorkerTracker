@@ -6,7 +6,7 @@ import WorkListMaster from "../master/WorkListMaster";
 import Summary from "./Summary";
 import "./Button.css"
 import "./UI.css"
-
+import { useAdmin } from "./useAdmin";
 
 
 
@@ -23,6 +23,7 @@ function WorkTracker() {
   const [selectedSubCategory, setSelectedSubCategory] = useState(null);
   const [showModal, setShowModal] = useState(null);
   const [activeWorks, setActiveWorks] = useState([]);
+  const {withAdmin} = useAdmin();
 
   //UTCをJSTに変換
   const formatJST = (date) =>
@@ -236,11 +237,11 @@ function WorkTracker() {
       <h2>作業時間管理</h2>
 
       <div className="side">
-        <button onClick={() => setMode("end")}>作業終了</button>
-        <button onClick={handleAllEnd}>一括終了</button>
-        <button onClick={() => setMode("master")}>社員マスタ</button>
-        <button onClick={() => setMode("worklistmaster")}>作業マスタ</button>
-        <button onClick={() => setMode("summary")}>集計</button>
+        <button onClick={withAdmin(() => setMode("end"))}>作業終了</button>
+        <button onClick={withAdmin({handleAllEnd})}>一括終了</button>
+        <button onClick={withAdmin(() => setMode("master"))}>社員マスタ</button>
+        <button onClick={withAdmin(() => setMode("worklistmaster"))}>作業マスタ</button>
+        <button onClick={withAdmin(() => setMode("summary"))}>集計</button>
       </div>
 
       <div className="main">
