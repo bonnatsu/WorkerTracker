@@ -238,7 +238,7 @@ function WorkTracker() {
 
       <div className="side">
         <button onClick={withAdmin(() => setMode("end"))}>作業終了</button>
-        <button onClick={withAdmin({handleAllEnd})}>一括終了</button>
+        <button onClick={withAdmin(handleAllEnd)}>一括終了</button>
         <button onClick={withAdmin(() => setMode("master"))}>社員マスタ</button>
         <button onClick={withAdmin(() => setMode("worklistmaster"))}>作業マスタ</button>
         <button onClick={withAdmin(() => setMode("summary"))}>集計</button>
