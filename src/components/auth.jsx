@@ -3,7 +3,7 @@ export const checkAdmin = async () => {
 
     if (!password) return false;
 
-    const res = await fetch("/api/admin_login", {
+    const res = await fetch("/api/auth", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
