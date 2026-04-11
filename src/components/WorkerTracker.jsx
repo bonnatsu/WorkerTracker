@@ -203,6 +203,10 @@ function WorkTracker() {
       return;
     }
 
+    const user = await fetchUsers(employeeId);
+    SetEmployeeId(user.id);
+    SetEmployeeName(user.name);
+
     const result = window.confirm(
       `${employeeId}: ${employeeName}の作業(${selectedCategory} > ${selectedSubCategory})を作業終了しますか？`);
     if (!result) {
