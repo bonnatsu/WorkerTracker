@@ -1,0 +1,210 @@
+.layout {
+    display: flex;
+    min-height: 100vh;
+    background: #f5f6fa;
+    width: 100%;
+}
+
+.main {
+    position: relative;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    flex: 1;
+    min-width: 0;
+}
+
+
+.header {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+    padding-left: 10px;
+}
+
+.side {
+    width: 200px;
+    padding: 16px;
+    background: #f5f6fa;
+    border-right: 1px solid #e5e7eb;
+
+    display: flex;
+    flex-direction: column;
+}
+
+/* ← これがキモ */
+.side-buttons {
+    margin-top: auto;
+    position: sticky;
+    bottom: 16px;            /* 下に張り付く */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+    border-radius: 12px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    background: #f5f6fa;
+}
+
+.side-buttons button {
+    appearance: none;
+    background: white;
+
+    min-height: 44px;
+    padding: 10px 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    /* 追加 */
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+
+    transition: all 0.2s ease;
+}
+
+.side-buttons button:hover {
+    background: #f1f3ff;
+    border-color: #3742fa;
+    color: #3742fa;
+    transform: translateY(-2px);
+
+    /* ← ここ重要：影を変えない */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+
+.side button.active {
+    background: #d3d3d3;
+    color: white;
+}
+
+
+.menu-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.menu-title {
+    font-size: 12px;
+    color: #6b7280;
+    margin-bottom: 4px;
+    padding-left: 4px;
+}
+
+.input-area {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 32px;
+    width: 100%;
+}
+
+.input-area input {
+    width: 300px;
+    height: 40px;
+    padding: 0 12px;
+    font-weight: bold;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.input-area button {
+    appearance: none;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+
+    padding: 8px 14px;
+    font-weight: 600;
+    color: #333;
+
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+
+.active-list {
+    margin-bottom: 20px;
+    padding: 12px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+}
+
+.active-item {
+    padding: 6px 0;
+    font-size: 14px;
+    background: white;
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+.back-area {
+    margin-top: 16px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.back-area button {
+    background: #aaa;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 14px;
+    cursor: pointer;
+}
+
+.back-area button:hover {
+    background: #888;
+}
+
+
+.selected-info {
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+
+
+
+.back-button {
+    appearance: none;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+
+    padding: 8px 14px;
+    font-weight: 600;
+    color: #333;
+
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    align-self: flex-start;
+}
+
+.back-button:hover {
+    background: #f1f3ff;
+    border-color: #3742fa;
+    color: #3742fa;
+    transform: translateY(-2px);
+}
+
+.back-button:active {
+    transform: scale(0.98);
+}
