@@ -1,16 +1,84 @@
-# React + Vite
+# 作業工数算出アプリ
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 概要
 
-Currently, two official plugins are available:
+本アプリは、勤怠実績だけでは把握できない「作業単位の工数」を可視化することを目的として開発しました。
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+従来の勤怠管理では作業ごとの実績や内訳が取得できず、現場の実態に即した分析が困難でした。  
+本アプリでは、作業単位での工数記録・集計を可能にすることで、より精度の高い業務分析を実現します。
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 背景・課題
 
-## Expanding the ESLint configuration
+現場では以下のような課題が存在していました。
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 勤怠データでは作業別の工数が把握できない  
+- シフト作成が経験則に依存している  
+- 作業者ごとの生産性やスキルを定量的に評価できない  
+
+これらを解決するため、作業単位での実績データを取得・蓄積できる仕組みが必要と考え、本アプリを開発しました。
+
+---
+
+## 主な機能
+
+- 作業開始・終了の記録  
+- 作業カテゴリ／サブカテゴリによる分類管理  
+- 作業実績の一覧表示・集計  
+- 工数データの可視化（分析用データ出力）  
+
+---
+
+## 期待される効果
+
+- 作業ごとの工数実績の可視化  
+- シフト作成の最適化  
+- 作業者ごとのスキル・生産性分析  
+- 業務改善に向けたデータ活用の促進  
+
+---
+
+## 想定利用シーン
+
+- 倉庫業務などの多人数オペレーション現場  
+- 作業工程が細分化された業務環境  
+- 人員配置の最適化が求められる現場  
+
+---
+
+## 技術構成
+
+- フロントエンド：React  
+- バックエンド：Node.js（API）  
+- データベース：Supabase（PostgreSQL）  
+- デプロイ：Vercel  
+
+---
+
+## 技術選定の意図
+
+本アプリは個人開発として、開発スピードと運用のシンプルさを重視して構成を選定しました。
+
+- サーバ管理不要で運用コストを抑えられる構成  
+- 将来的な拡張・移行を見据えた構成  
+
+データベースにはSupabaseを採用しており、内部的にはPostgreSQLベースで構成されています。  
+そのため、特定のクラウドサービスに依存しすぎない設計となっています。
+
+また、業務システムとしての保守性・移植性を意識し、過度に複雑な構成は避けています。
+
+---
+
+## 工夫した点
+
+- 作業単位での記録に特化し、最小限の操作で入力できるUI設計  
+- 分析しやすいデータ構造（カテゴリ設計）を意識  
+- 過剰なアーキテクチャを避け、必要十分な構成に限定  
+
+---
+
+## 今後の改善予定
+
+- ダッシュボードによる可視化強化  
+- UI/UX改善  
